@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.13.0'
+        classpath 'me.champeau.gradle:gradle-groovy-android-plugin:0.2.1'
+    }
+}
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "com.ordonteam.hackzurich"
+        minSdkVersion 9
+        targetSdkVersion 9
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.codehaus.groovy:groovy:2.4.0-beta-3:grooid'
+    compile ('org.codehaus.groovy:groovy-json:2.4.0-beta-3') {
+        transitive = false
+    }
+}
+apply plugin: 'me.champeau.gradle.groovy-android'
+
+
+task zip2jar(type: Zip, dependsOn: "compileReleaseJava") {
+    from 'build/intermediates/classes/release'
+    destinationDir = file('build/libs')
+    extension = "jar"
+}
