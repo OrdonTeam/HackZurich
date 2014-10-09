@@ -1,0 +1,16 @@
+Android Market:
+	tytu³
+		max 30 znaków
+	krótki opis
+		max 80 znaków
+	pe³ny opis
+		max 4000 znaków
+	zrzuty ekranu
+		x2
+	ikona
+		512 x 512
+	grafika w sekcji polecane
+		1024 x 500
+
+Apka:
+	???
