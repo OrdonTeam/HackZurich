@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -21,13 +22,15 @@ class MainActivity extends Activity {
 
         CenteredLayout centeredLayout = new CenteredLayout(this)
         centeredLayout.setOrientation(LinearLayout.VERTICAL);
-        centeredLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT))
+        centeredLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT))
 
         TextView titleView = new TextView(this)
         titleView.setText("Your name:")
+        titleView.setGravity(Gravity.CENTER_HORIZONTAL)
         centeredLayout.addView(titleView)
 
         EditText editText = new EditText(this)
+        editText.setLayoutParams(new LinearLayout.LayoutParams(200, LinearLayout.LayoutParams.WRAP_CONTENT))
         centeredLayout.addView(editText)
 
         Button button = new Button(this)
