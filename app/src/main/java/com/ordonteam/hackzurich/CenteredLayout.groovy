@@ -1,4 +1,5 @@
-package com.ordonteam.hackzurich;
+package com.ordonteam.hackzurich
+
 import android.content.Context
 import android.view.View
 import android.widget.LinearLayout
@@ -33,5 +34,16 @@ public class CenteredLayout extends RelativeLayout {
 
     public void setOrientation(int orientation) {
         centered.setOrientation(orientation);
+    }
+
+    @Override
+    public void setBackgroundColor(int color) {
+        centered.setBackgroundColor(color)
+    }
+
+    public void setPadding(int sizeInDp) {
+        float scale = getResources().getDisplayMetrics().density;
+        int dpAsPixels = (int) (sizeInDp*scale + 0.5f);
+        centered.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels)
     }
 }

@@ -1,6 +1,7 @@
 package com.ordonteam.hackzurich.mode
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -13,6 +14,8 @@ class JoinGameLayout extends CenteredLayout{
     EditText hostIpAddress
     JoinGameLayout(Activity activity) {
         super(activity)
+        setBackgroundColor(Color.argb(255,69,97,157))
+        setPadding(20)
 
         TextView hostIpInfo = new TextView(activity)
         hostIpInfo.setText('Please specify host IP:')
