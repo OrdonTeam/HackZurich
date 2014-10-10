@@ -9,6 +9,6 @@ class ModeSelectorActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
-        setContentView(new ModelSelectorLayout(applicationContext))
+        setContentView(new ModeSelectorLayout(this))
     }
 }
