@@ -1,10 +1,12 @@
-package com.ordonteam.hackzurich
+package com.ordonteam.hackzurich.mode
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Button
 import android.widget.TextView
+import com.ordonteam.hackzurich.CenteredLayout
+import com.ordonteam.hackzurich.MainActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic
