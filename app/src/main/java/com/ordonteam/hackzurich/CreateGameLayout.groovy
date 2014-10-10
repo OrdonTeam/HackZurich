@@ -18,7 +18,7 @@ class CreateGameLayout extends CenteredLayout{
         Button createGameButton = new Button(activity)
         createGameButton.setText("Create game")
         createGameButton.setOnClickListener({
-            Intent intent = new Intent(activity, MainActivity.class)
+            Intent intent = new Intent(activity, WaitingActivity.class)
             activity.startActivity(intent)
         })
         addView(userIpInfo)
