@@ -1,7 +1,5 @@
 package com.ordonteam.hackzurich.waiting
-
 import android.content.Context
-import android.util.Log
 import android.widget.TextView
 import com.ordonteam.hackzurich.CenteredLayout
 import groovy.transform.CompileStatic
@@ -36,12 +34,14 @@ class WaitingLayout extends CenteredLayout {
 
     @CompileStatic(TypeCheckingMode.SKIP)
     private String showIps() {
-        NetworkInterface.getNetworkInterfaces().collect { NetworkInterface ni ->
+        List<String> flatten = NetworkInterface.getNetworkInterfaces().collect { NetworkInterface ni ->
             ni.inetAddresses.collect { InetAddress ia ->
                 ia.getHostAddress()
-            }.findAll { String host ->
-                host ==~ ~/\d+.\d+.\d+.\d+/ && host != '127.0.0.1'
             }
-        }.first().first()
+        }.flatten().findAll { String host ->
+            host ==~ ~/\d+.\d+.\d+.\d+/ && host != '127.0.0.1'
+        }
+
+        return flatten.isEmpty() ? 'xxx.xxx.xxx.xxx' : flatten.get(0)
     }
 }
