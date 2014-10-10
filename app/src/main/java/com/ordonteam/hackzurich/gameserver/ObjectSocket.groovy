@@ -13,7 +13,10 @@ class ObjectSocket {
     private ObjectInputStream inputStream
 
     ObjectSocket(String ipAddress) {
-        Socket socket = new Socket(ipAddress, PORT)
+        this(new Socket(ipAddress, PORT))
+    }
+
+    ObjectSocket(Socket socket) {
         outputStream = new ObjectOutputStream(socket.getOutputStream())
         outputStream.flush()
         inputStream = new ObjectInputStream(socket.getInputStream())
