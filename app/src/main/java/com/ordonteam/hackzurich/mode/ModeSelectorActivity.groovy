@@ -1,7 +1,8 @@
-package com.ordonteam.hackzurich
+package com.ordonteam.hackzurich.mode
 
 import android.app.Activity
 import android.os.Bundle
+import com.ordonteam.hackzurich.mode.ModeSelectorLayout
 import groovy.transform.CompileStatic
 
 @CompileStatic

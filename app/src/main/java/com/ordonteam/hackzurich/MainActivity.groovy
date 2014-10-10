@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.ordonteam.hackzurich.mode.ModeSelectorActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic
