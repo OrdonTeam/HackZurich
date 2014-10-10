@@ -1,9 +1,11 @@
 package com.ordonteam.hackzurich.waiting
 
 import android.content.Context
+import android.util.Log
 import android.widget.TextView
 import com.ordonteam.hackzurich.CenteredLayout
 import groovy.transform.CompileStatic
+import groovy.transform.TypeCheckingMode
 
 @CompileStatic
 class WaitingLayout extends CenteredLayout {
@@ -12,21 +14,34 @@ class WaitingLayout extends CenteredLayout {
         super(context)
 
         TextView titleView1 = new TextView(context)
-        titleView1.setText("Waiting")
+        titleView1.setText('Waiting')
         addView(titleView1)
 
         TextView titleView2 = new TextView(context)
-        titleView2.setText("for other")
+        titleView2.setText('for second player.')
         addView(titleView2)
 
         TextView titleView3 = new TextView(context)
-        titleView3.setText("player")
+        titleView3.setText('')
         addView(titleView3)
 
-        NetworkInterface.getNetworkInterfaces()
-
         TextView titleView4 = new TextView(context)
-        titleView4.setText("jakis ip")
+        titleView4.setText('Show to your friend:')
         addView(titleView4)
+
+        TextView titleView5 = new TextView(context)
+        titleView5.setText(showIps())
+        addView(titleView5)
+    }
+
+    @CompileStatic(TypeCheckingMode.SKIP)
+    private String showIps() {
+        NetworkInterface.getNetworkInterfaces().collect { NetworkInterface ni ->
+            ni.inetAddresses.collect { InetAddress ia ->
+                ia.getHostAddress()
+            }.findAll { String host ->
+                host ==~ ~/\d+.\d+.\d+.\d+/ && host != '127.0.0.1'
+            }
+        }.first().first()
     }
 }

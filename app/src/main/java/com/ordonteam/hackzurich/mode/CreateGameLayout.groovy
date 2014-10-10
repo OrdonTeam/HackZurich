@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.ordonteam.hackzurich.CenteredLayout
 import com.ordonteam.hackzurich.MainActivity
+import com.ordonteam.hackzurich.WaitingActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic

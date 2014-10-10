@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.ordonteam.hackzurich.mode.ModeSelectorActivity
 import groovy.transform.CompileStatic
+import groovy.transform.TypeCheckingMode
 
 @CompileStatic
 class MainActivity extends Activity {
