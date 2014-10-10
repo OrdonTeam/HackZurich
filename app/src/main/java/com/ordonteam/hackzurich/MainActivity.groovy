@@ -1,16 +1,14 @@
 package com.ordonteam.hackzurich
-
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.ordonteam.hackzurich.mode.ModeSelectorActivity
 import groovy.transform.CompileStatic
-import groovy.transform.TypeCheckingMode
 
 @CompileStatic
 class MainActivity extends Activity {
@@ -25,9 +23,13 @@ class MainActivity extends Activity {
 
         TextView titleView = new TextView(this)
         titleView.setText("Your name:")
+        titleView.setGravity(Gravity.CENTER_HORIZONTAL)
         centeredLayout.addView(titleView)
 
         EditText editText = new EditText(this)
+        float scale = getResources().getDisplayMetrics().density;
+        int dpAsPixels = (int) (200*scale + 0.5f);
+        editText.setLayoutParams(new LinearLayout.LayoutParams(dpAsPixels, LinearLayout.LayoutParams.WRAP_CONTENT))
         centeredLayout.addView(editText)
 
         Button button = new Button(this)
