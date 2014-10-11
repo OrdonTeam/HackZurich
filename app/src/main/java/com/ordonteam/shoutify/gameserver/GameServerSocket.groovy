@@ -59,8 +59,15 @@ class GameServerSocket implements Runnable, Serializable {
 
     @Override
     void run() {
-        while (true){
-            receiveMessage()
+        try{
+            while (true){
+                receiveMessage()
+            }
+        }catch (EOFException e){
+            clientCallback.onDisconnect()
+        }catch (Exception e){
+            e.printStackTrace()
+            clientCallback.onDisconnect()
         }
     }
 

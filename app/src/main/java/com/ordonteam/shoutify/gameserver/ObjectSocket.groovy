@@ -38,4 +38,13 @@ class ObjectSocket{
             return receiveMessage()
         }
     }
+
+    void close() {
+        try{
+            outputStream.close()
+        }catch (e){}
+        try{
+            inputStream.close()
+        }catch (e){}
+    }
 }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.WindowManager
 import com.ordonteam.shoutify.gameserver.ClientCallback
 import com.ordonteam.shoutify.game.GameActivity
 import com.ordonteam.shoutify.gameserver.GameServerSocket
@@ -18,6 +19,7 @@ class WaitingActivity extends Activity implements ClientCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         WaitingLayout look = new WaitingLayout(applicationContext)
         look.setPadding(20)
         look.setBackgroundColor(Color.argb(255,69,97,157))
@@ -52,5 +54,10 @@ class WaitingActivity extends Activity implements ClientCallback {
     @Override
     void onLoose() {
 
+    }
+
+    @Override
+    void onDisconnect() {
+        finish()
     }
 }

@@ -7,6 +7,7 @@ import android.view.WindowManager
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.ordonteam.shoutify.gameserver.ClientCallback
+import com.ordonteam.shoutify.gameserver.GameServer
 import com.ordonteam.shoutify.gameserver.GameServerSocket
 import com.ordonteam.shoutify.sensors.AccelerometerActivator
 import com.ordonteam.shoutify.sensors.VoiceActivator
@@ -92,8 +93,14 @@ class GameActivity extends Activity implements ClientCallback{
     }
 
     @Override
+    void onDisconnect() {
+        finish()
+    }
+
+    @Override
     void onPause(){
         super.onPause()
+        GameServer.getGameServer().shutdown()
         voiceActivator.stop()
         accelerometerActivator.stop()
     }

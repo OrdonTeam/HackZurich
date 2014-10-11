@@ -94,6 +94,11 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
 
     }
 
+    @Override
+    void onDisconnect() {
+        activity.finish()
+    }
+
     @CompileStatic(TypeCheckingMode.SKIP)
     private String showIps() {
         List<String> flatten = NetworkInterface.getNetworkInterfaces().collect { NetworkInterface ni ->

@@ -11,4 +11,6 @@ public interface ClientCallback {
     void onWin()
 
     void onLoose()
+
+    void onDisconnect()
 }

@@ -53,6 +53,8 @@ class GameServer implements Runnable {
 
     void shutdown() {
         socket.close()
+        firstClient?.close()
+        secondClient?.close()
     }
 
     class ReceiveMessages implements Runnable {
