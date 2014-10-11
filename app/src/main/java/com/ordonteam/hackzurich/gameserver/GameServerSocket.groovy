@@ -9,7 +9,7 @@ class GameServerSocket implements Runnable, Serializable {
 
     static GameServerSocket gameServerSocket
 
-    static GameServerSocket crateGameSocket(String ipAddress, ClientCallback clientCallback) {
+    static GameServerSocket crateGameSocket(String ipAddress, ClientCallback clientCallback) throws java.net.ConnectException {
         GameServerSocket socket = new GameServerSocket(ipAddress, clientCallback)
         gameServerSocket = socket
         return socket
@@ -28,11 +28,9 @@ class GameServerSocket implements Runnable, Serializable {
 
     private GameServerSocket(String ipAddress, ClientCallback clientCallback) {
         this.clientCallback = clientCallback
-        startThread {
-            objectSocket = new ObjectSocket(ipAddress)
-            startThread(this)
-            this.objectSocket.sendMessage(new ConnectMessage())
-        }
+        objectSocket = new ObjectSocket(ipAddress)
+        startThread(this)
+        this.objectSocket.sendMessage(new ConnectMessage())
     }
 
     void ready() {
