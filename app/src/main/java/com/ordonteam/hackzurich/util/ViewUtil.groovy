@@ -7,6 +7,6 @@ import groovy.transform.CompileStatic
 class ViewUtil {
     static int dpAsPixels(int dp, Resources resources) {
         float scale = resources.getDisplayMetrics().density;
-        return (int) (200*scale + 0.5f);
+        return (int) (dp*scale + 0.5f);
     }
 }
