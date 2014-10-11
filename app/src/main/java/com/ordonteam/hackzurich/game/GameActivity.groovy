@@ -66,7 +66,6 @@ class GameActivity extends Activity implements ClientCallback{
     @Override
     void onStarted() {
         Log.e('GameActivity','onStarted')
-        GameServerSocket.getGameServerSocket().ready()
         gameLayoutWrapper.post({
             gameLayoutWrapper.removeView(curtain)
         })
