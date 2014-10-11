@@ -1,11 +1,8 @@
 package com.ordonteam.hackzurich.game
-
 import android.app.Activity
-import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -51,6 +48,7 @@ class GameActivity extends Activity implements ClientCallback{
 
         setContentView(gameLayoutWrapper)
         GameServerSocket.getGameServerSocket().setClientCallback(this)
+        GameServerSocket.getGameServerSocket().ready()
         new VoiceActivator({
             gameLayout.charge()
         })
@@ -67,6 +65,7 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onStarted() {
+        Log.e('GameActivity','onStarted')
         gameServerSocket.ready()
         gameLayoutWrapper.post({
             gameLayoutWrapper.removeView(curtain)
