@@ -6,7 +6,7 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
 
 @CompileStatic
-class ObjectSocket {
+class ObjectSocket{
 
     public static final int PORT = 9999
     private ObjectOutputStream outputStream

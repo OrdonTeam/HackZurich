@@ -19,14 +19,12 @@ class WaitingActivity extends Activity implements ClientCallback {
         super.onCreate(savedInstanceState)
         setContentView(new WaitingLayout(applicationContext))
         Serializable nick = getIntent().getExtras().getSerializable('nick')
-        gameServerSocket = new GameServerSocket('127.0.0.1', this)
+        gameServerSocket = GameServerSocket.crateGameSocket('127.0.0.1', this)
     }
 
     @Override
     void onConnected() {
-
         Intent intent = new Intent(this, GameActivity.class)
-        intent.putExtra('gameServerSocket', gameServerSocket)
         this.startActivity(intent)
     }
 

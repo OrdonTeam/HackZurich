@@ -37,7 +37,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
         button.setText('Next')
         button.setOnClickListener({
             Intent intent = new Intent(activity, ModeSelectorActivity.class)
-            intent.putExtra("nick", editText.text);
+            intent.putExtra("nick", editText.getText().toString());
             activity.startActivity(intent)
         })
         button.setEnabled(false);

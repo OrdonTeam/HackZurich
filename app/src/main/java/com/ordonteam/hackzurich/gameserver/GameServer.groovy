@@ -1,7 +1,8 @@
 package com.ordonteam.hackzurich.gameserver
 
-import com.ordonteam.hackzurich.gameserver.messages.ConnectedMessage
 import com.ordonteam.hackzurich.gameserver.messages.Message
+import com.ordonteam.hackzurich.gameserver.status.CreatedStatus
+import com.ordonteam.hackzurich.gameserver.status.ServerStatus
 import groovy.transform.CompileStatic
 
 import static com.ordonteam.hackzurich.gameserver.ObjectSocket.PORT
@@ -12,7 +13,7 @@ class GameServer implements Runnable{
     private ServerSocket socket
     private ObjectSocket firstClient
     private ObjectSocket secondClient
-    int i = 0
+    private ServerStatus currentStatus = new CreatedStatus();
 
     GameServer() {
         startThread(this)
@@ -28,11 +29,7 @@ class GameServer implements Runnable{
     }
 
     void receiveMessage(Message message, ObjectSocket client) {
-        i++
-        if (i==2) {
-            firstClient.sendMessage(new ConnectedMessage())
-            secondClient.sendMessage(new ConnectedMessage())
-        }
+        currentStatus = currentStatus.receiveMessage(message, firstClient == client, firstClient,secondClient)
     }
 
     class ReceiveMessages implements Runnable {
