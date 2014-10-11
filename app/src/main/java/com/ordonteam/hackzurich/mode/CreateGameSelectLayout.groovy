@@ -16,9 +16,9 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
 
 @CompileStatic
-class CreateGameLayout extends CenteredLayout {
+class CreateGameSelectLayout extends CenteredLayout {
 
-    CreateGameLayout (Activity activity) {
+    CreateGameSelectLayout (Activity activity) {
         super(activity)
         setBackgroundColor(Color.argb(255,0,157,71))
         setPadding(20)
