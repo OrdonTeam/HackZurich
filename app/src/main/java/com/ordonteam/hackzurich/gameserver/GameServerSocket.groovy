@@ -1,8 +1,5 @@
 package com.ordonteam.hackzurich.gameserver
-
 import com.ordonteam.hackzurich.gameserver.messages.*
-import com.ordonteam.hackzurich.gameserver.status.StartedStatus
-import com.ordonteam.hackzurich.gameserver.status.UpdatedMessage
 import groovy.transform.CompileStatic
 
 import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
@@ -42,8 +39,8 @@ class GameServerSocket implements Runnable, Serializable {
         objectSocket.sendMessage(new ReadyMessage())
     }
 
-    void attack() {
-        objectSocket.sendMessage(new AttackMessage())
+    void attack(int chargeStatus) {
+        objectSocket.sendMessage(new AttackMessage(chargeStatus))
     }
 
     void disconnect() {
@@ -63,13 +60,18 @@ class GameServerSocket implements Runnable, Serializable {
         if(message instanceof ConnectedMessage){
             clientCallback.onConnected()
         }
-        if(message instanceof StartedStatus){
+        if(message instanceof StartedMessage){
             clientCallback.onStarted()
         }
         if(message instanceof UpdatedMessage){
             UpdatedMessage updatedMessage = (UpdatedMessage) message
             clientCallback.onUpdated(updatedMessage.myStatus,updatedMessage.opponentStatus)
         }
-        //Try avoid switch here
+        if(message instanceof WinMessage){
+            clientCallback.onWin()
+        }
+        if(message instanceof LooseMessage){
+            clientCallback.onLoose()
+        }
     }
 }

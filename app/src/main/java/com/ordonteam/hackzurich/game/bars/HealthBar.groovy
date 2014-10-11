@@ -1,8 +1,6 @@
 package com.ordonteam.hackzurich.game.bars
-
 import android.app.Activity
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
 import android.widget.RelativeLayout
@@ -11,18 +9,20 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackzurich.util.ViewUtil.dpAsPixels
 
 @CompileStatic
-class UserChargingProgressbar extends ShoutifyProgressBar {
-    UserChargingProgressbar(Activity activity) {
+class HealthBar extends ShoutifyProgressBar {
+    HealthBar(Activity activity, Integer color) {
         super(activity)
+        progress = 50
+
         paint = new Paint()
-        paint.setColor(Color.BLUE)
+        paint.setColor(color)
 
         border = new Paint()
         border.setStyle(Paint.Style.STROKE);
         border.setStrokeWidth(4)
-        border.setColor(Color.BLUE)
+        border.setColor(color)
 
-        size = new Point(dpAsPixels(250, getResources()),dpAsPixels(50,getResources()))
+        size = new Point(dpAsPixels(50, getResources()), dpAsPixels(350, getResources()))
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.x,size.y)
         setLayoutParams(layoutParams)
@@ -30,6 +30,6 @@ class UserChargingProgressbar extends ShoutifyProgressBar {
     @Override
     public void draw(Canvas canvas){
         canvas.drawRect(0,0,size.x,size.y,border)
-        canvas.drawRect(0,0,(int)size.x*progress/100,size.y,paint)
+        canvas.drawRect(0,(int)size.y*(1d-(progress/100)),size.x,size.y,paint)
     }
 }

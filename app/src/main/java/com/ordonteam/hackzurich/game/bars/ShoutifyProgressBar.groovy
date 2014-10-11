@@ -1,5 +1,4 @@
 package com.ordonteam.hackzurich.game.bars
-
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Point
@@ -9,10 +8,10 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class ShoutifyProgressBar extends View {
 
-    Point size
-    Point position
-    int progress
+    int progress = 0
     Paint paint
+    Paint border
+    Point size
 
     void setProgress(int progress) {
         this.progress = progress
