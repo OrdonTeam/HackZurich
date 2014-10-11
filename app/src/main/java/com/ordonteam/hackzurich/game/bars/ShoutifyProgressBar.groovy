@@ -10,9 +10,17 @@ import groovy.transform.CompileStatic
 class ShoutifyProgressBar extends View {
     Point size
     Point position
+    int progress
     Paint paint
+
+    void setProgress(int progress) {
+        this.progress = progress
+        postInvalidate()
+    }
 
     ShoutifyProgressBar(Context context) {
         super(context)
     }
+
+
 }

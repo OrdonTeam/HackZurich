@@ -14,6 +14,7 @@ import groovy.transform.CompileStatic
 class UserChargingProgressbar extends ShoutifyProgressBar {
     UserChargingProgressbar(Activity activity) {
         super(activity)
+        progress = 0
         size = new Point(ViewUtil.dpAsPixels(250, getResources()),ViewUtil.dpAsPixels(50,getResources()))
         position = new Point(ViewUtil.dpAsPixels(5,getResources()),ViewUtil.dpAsPixels(5,getResources()))
         paint = new Paint()
@@ -23,6 +24,6 @@ class UserChargingProgressbar extends ShoutifyProgressBar {
     }
     @Override
     public void draw(Canvas canvas){
-        canvas.drawRect(position.x,position.y,position.x+size.x,position.y+size.y,paint)
+        canvas.drawRect(position.x,position.y,(int)position.x+size.x*progress/100,position.y+size.y,paint)
     }
 }

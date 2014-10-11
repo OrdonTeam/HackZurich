@@ -13,7 +13,8 @@ import groovy.transform.CompileStatic
 class OpponentHealthBar extends ShoutifyProgressBar {
     OpponentHealthBar(Activity activity) {
         super(activity)
-        size = new Point(ViewUtil.dpAsPixels(50, getResources()),ViewUtil.dpAsPixels(400,getResources()))
+        progress = 100
+        size = new Point(ViewUtil.dpAsPixels(50, getResources()),ViewUtil.dpAsPixels(350,getResources()))
         position = new Point(ViewUtil.dpAsPixels(-5,getResources()),ViewUtil.dpAsPixels(-5,getResources()))
         paint = new Paint()
         paint.setColor(Color.RED)
@@ -22,6 +23,6 @@ class OpponentHealthBar extends ShoutifyProgressBar {
     }
     @Override
     public void draw(Canvas canvas){
-        canvas.drawRect(position.x,position.y,position.x+size.x,position.y+size.y,paint)
+        canvas.drawRect(position.x,(int)position.y+size.y*(1-progress/100),position.x+size.x,position.y+size.y,paint)
     }
 }

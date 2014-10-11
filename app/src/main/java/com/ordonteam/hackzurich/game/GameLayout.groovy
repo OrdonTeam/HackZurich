@@ -1,6 +1,7 @@
 package com.ordonteam.hackzurich.game
 
 import android.app.Activity
+import android.widget.Button
 import android.widget.RelativeLayout
 import com.ordonteam.hackzurich.game.bars.OpponentHealthBar
 import com.ordonteam.hackzurich.game.bars.UserChargingProgressbar
@@ -9,9 +10,9 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class GameLayout extends RelativeLayout {
+    int i=100
     GameLayout(Activity activity) {
         super(activity)
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)
 
         UserHealthBar userHealthBar = new UserHealthBar(activity)
         RelativeLayout.LayoutParams lp1 = (RelativeLayout.LayoutParams) userHealthBar.getLayoutParams()
@@ -22,6 +23,7 @@ class GameLayout extends RelativeLayout {
         UserChargingProgressbar userChargingProgressbar = new UserChargingProgressbar(activity)
         RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) userChargingProgressbar.getLayoutParams()
         lp2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+        lp2.addRule(RelativeLayout.CENTER_HORIZONTAL)
         userChargingProgressbar.setLayoutParams(lp2)
         addView(userChargingProgressbar)
 
