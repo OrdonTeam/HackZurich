@@ -1,4 +1,4 @@
-package com.ordonteam.hackzurich.mode
+package com.ordonteam.hackzurich.game.bars
 
 import android.content.Context
 import android.graphics.Paint

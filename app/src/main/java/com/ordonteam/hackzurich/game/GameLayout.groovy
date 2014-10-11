@@ -1,9 +1,10 @@
-package com.ordonteam.hackzurich.mode
+package com.ordonteam.hackzurich.game
 
 import android.app.Activity
-import android.text.Layout
-import android.widget.GridLayout
 import android.widget.RelativeLayout
+import com.ordonteam.hackzurich.game.bars.OpponentHealthBar
+import com.ordonteam.hackzurich.game.bars.UserChargingProgressbar
+import com.ordonteam.hackzurich.game.bars.UserHealthBar
 import groovy.transform.CompileStatic
 
 @CompileStatic

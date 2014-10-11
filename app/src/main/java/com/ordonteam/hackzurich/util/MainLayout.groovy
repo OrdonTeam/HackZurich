@@ -1,4 +1,5 @@
 package com.ordonteam.hackzurich.util
+
 import android.app.Activity
 import android.content.Intent
 import android.text.Editable
@@ -13,19 +14,24 @@ import com.ordonteam.hackzurich.mode.ModeSelectorActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class ButtonTextLayout extends CenteredLayout implements TextWatcher{
+class MainLayout extends CenteredLayout implements TextWatcher {
 
     TextView titleView;
     EditText editText;
     Button button;
 
-    ButtonTextLayout(Activity activity) {
+    MainLayout(Activity activity) {
         super(activity)
 
         titleView = new TextView(activity)
         titleView.setText("Your name:")
         titleView.setGravity(Gravity.CENTER_HORIZONTAL)
         addView(titleView)
+
+        editText = new EditText(activity)
+        editText.setLayoutParams(new LinearLayout.LayoutParams(ViewUtil.dpAsPixels(200, getResources()), LinearLayout.LayoutParams.WRAP_CONTENT))
+        editText.addTextChangedListener(this);
+        addView(editText)
 
         button = new Button(activity)
         button.setText('Next')
@@ -36,21 +42,17 @@ class ButtonTextLayout extends CenteredLayout implements TextWatcher{
         })
         button.setEnabled(false);
         addView(button)
-
-        editText = new EditText(activity)
-        editText.setLayoutParams(new LinearLayout.LayoutParams(ViewUtil.dpAsPixels(200,getResources()), LinearLayout.LayoutParams.WRAP_CONTENT))
-        editText.addTextChangedListener(this);
-        addView(editText)
-
     }
+
     public void afterTextChanged(Editable s) {
-        if (editText.text.toString()?.length() == 0){
+        if (editText.text.toString()?.length() == 0) {
             button.setEnabled(false);
-        }
-        else{
+        } else {
             button.setEnabled(true);
         }
     }
-    public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-    public void onTextChanged(CharSequence s, int start, int before, int count){}
+
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+    public void onTextChanged(CharSequence s, int start, int before, int count) {}
 }

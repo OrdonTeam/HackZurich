@@ -1,23 +1,23 @@
-package com.ordonteam.hackzurich.mode
+package com.ordonteam.hackzurich.game.bars
 
 import android.app.Activity
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import com.ordonteam.hackzurich.game.bars.ShoutifyProgressBar
 import com.ordonteam.hackzurich.util.ViewUtil
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class UserChargingProgressbar extends ShoutifyProgressBar {
-    UserChargingProgressbar(Activity activity) {
+class UserHealthBar extends ShoutifyProgressBar {
+    UserHealthBar(Activity activity) {
         super(activity)
-        size = new Point(ViewUtil.dpAsPixels(250, getResources()),ViewUtil.dpAsPixels(50,getResources()))
+        size = new Point(ViewUtil.dpAsPixels(50, getResources()),ViewUtil.dpAsPixels(400,getResources()))
         position = new Point(ViewUtil.dpAsPixels(5,getResources()),ViewUtil.dpAsPixels(5,getResources()))
         paint = new Paint()
-        paint.setColor(Color.BLUE)
+        paint.setColor(Color.GREEN)
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.x,size.y)
         setLayoutParams(layoutParams)
     }

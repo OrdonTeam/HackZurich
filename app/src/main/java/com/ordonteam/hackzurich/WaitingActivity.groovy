@@ -3,10 +3,9 @@ package com.ordonteam.hackzurich
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.ordonteam.hackzurich.gameserver.ClientCallback
 import com.ordonteam.hackzurich.gameserver.GameServerSocket
-import com.ordonteam.hackzurich.mode.JoinGameActivity
+import com.ordonteam.hackzurich.game.GameActivity
 import com.ordonteam.hackzurich.waiting.WaitingLayout
 import groovy.transform.CompileStatic
 
@@ -24,7 +23,7 @@ class WaitingActivity extends Activity implements ClientCallback {
     @Override
     void onConnected() {
 
-        Intent intent = new Intent(this, JoinGameActivity.class)
+        Intent intent = new Intent(this, GameActivity.class)
         this.startActivity(intent)
     }
 
