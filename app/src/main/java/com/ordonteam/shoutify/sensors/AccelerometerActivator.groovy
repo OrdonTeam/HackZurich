@@ -33,4 +33,8 @@ class AccelerometerActivator implements SensorEventListener{
     void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
+    void stop() {
+        mSensorManager.unregisterListener(this)
+    }
 }

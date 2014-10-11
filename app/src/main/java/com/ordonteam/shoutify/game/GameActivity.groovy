@@ -19,6 +19,8 @@ class GameActivity extends Activity implements ClientCallback{
     GameLayout gameLayout
     RelativeLayout gameLayoutWrapper
     RelativeLayout curtain
+    private VoiceActivator voiceActivator
+    private AccelerometerActivator accelerometerActivator
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +64,10 @@ class GameActivity extends Activity implements ClientCallback{
         gameLayoutWrapper.post({
             gameLayoutWrapper.removeView(curtain)
         })
-        new VoiceActivator({
+        voiceActivator = new VoiceActivator({
             gameLayout.charge()
         })
-        new AccelerometerActivator(this, {
+        accelerometerActivator = new AccelerometerActivator(this, {
             GameServerSocket.getGameServerSocket().attack(gameLayout.userChargingProgressbar.progress)
             gameLayout.resetChargeProgress()
         })
@@ -87,5 +89,11 @@ class GameActivity extends Activity implements ClientCallback{
     void onLoose() {
         Log.e('GameActivity', 'onLoose')
         gameLayout.showDefeated()
+    }
+
+    @Override
+    void onPause(){
+        voiceActivator.stop()
+        accelerometerActivator.stop()
     }
 }
