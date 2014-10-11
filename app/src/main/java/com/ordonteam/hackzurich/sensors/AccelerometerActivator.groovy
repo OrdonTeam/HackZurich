@@ -1,4 +1,5 @@
 package com.ordonteam.hackzurich.sensors
+
 import android.app.Activity
 import android.content.Context
 import android.hardware.Sensor
