@@ -11,8 +11,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.ordonteam.hackzurich.mode.CreateGameLayout
-import com.ordonteam.hackzurich.mode.JoinGameLayout
+import com.ordonteam.hackzurich.mode.CreateGameSelectLayout
+import com.ordonteam.hackzurich.mode.JoinGameSelectLayout
 import com.ordonteam.hackzurich.mode.ModeSelectorActivity
 import com.ordonteam.hackzurich.util.ButtonTextLayout
 import groovy.transform.CompileStatic
@@ -26,6 +26,7 @@ class MainActivity extends Activity {
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL)
+   
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1)
 

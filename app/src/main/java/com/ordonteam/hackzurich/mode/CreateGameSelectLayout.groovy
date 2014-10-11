@@ -10,8 +10,8 @@ import com.ordonteam.hackzurich.WaitingActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class CreateGameLayout extends CenteredLayout{
-    CreateGameLayout(Activity activity) {
+class CreateGameSelectLayout extends CenteredLayout{
+    CreateGameSelectLayout(Activity activity) {
         super(activity)
         setBackgroundColor(Color.argb(255,0,157,71))
         setPadding(20)
