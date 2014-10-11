@@ -19,9 +19,9 @@ class StartedStatus implements ServerStatus {
         Log.e('StartedStatus',"receiveMessage ${message.getClass()}")
         if (message instanceof AttackMessage) {
             if (isFirst) {
-                player2 - 10
+                player2 -= 10
             } else {
-                player1 - 10
+                player1 -= 10
             }
             first.sendMessage(new UpdatedMessage(player1, player2))
             second.sendMessage(new UpdatedMessage(player2, player1))

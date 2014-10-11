@@ -73,6 +73,7 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onUpdated(int myStatus,int opponentStatus) {
+        Log.e('GameActivity',"onUpdated $myStatus $opponentStatus")
         gameLayout.updateHealthStatus(myStatus, opponentStatus)
     }
 

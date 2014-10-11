@@ -12,7 +12,7 @@ import static com.ordonteam.hackzurich.util.ViewUtil.dpAsPixels
 class HealthBar extends ShoutifyProgressBar {
     HealthBar(Activity activity, Integer color) {
         super(activity)
-        progress = 50
+        progress = 100
 
         paint = new Paint()
         paint.setColor(color)

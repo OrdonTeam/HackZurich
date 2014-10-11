@@ -1,4 +1,6 @@
 package com.ordonteam.hackzurich.gameserver
+
+import android.util.Log
 import com.ordonteam.hackzurich.gameserver.messages.*
 import groovy.transform.CompileStatic
 
@@ -55,6 +57,7 @@ class GameServerSocket implements Runnable, Serializable {
 
     void receiveMessage() {
         Message message = objectSocket.receiveMessage()
+        Log.e("GameServerSocket","Reciving ${message.getClass()}")
         if(message instanceof ConnectedMessage){
             clientCallback.onConnected()
         }
