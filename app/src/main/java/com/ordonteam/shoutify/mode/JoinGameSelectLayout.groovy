@@ -22,7 +22,7 @@ import static com.ordonteam.shoutify.util.ThreadUtil.startThread
 class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
     EditText hostIpAddress
     private Activity activity
-    private Button joinGame
+    Button joinGame
 
     JoinGameSelectLayout(Activity activity) {
         super(activity)

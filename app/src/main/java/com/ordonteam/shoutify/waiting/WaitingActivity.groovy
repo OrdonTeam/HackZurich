@@ -1,14 +1,12 @@
-package com.ordonteam.shoutify
-
+package com.ordonteam.shoutify.waiting
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.WindowManager
-import com.ordonteam.shoutify.gameserver.ClientCallback
 import com.ordonteam.shoutify.game.GameActivity
+import com.ordonteam.shoutify.gameserver.ClientCallback
 import com.ordonteam.shoutify.gameserver.GameServerSocket
-import com.ordonteam.shoutify.waiting.WaitingLayout
 import groovy.transform.CompileStatic
 
 @CompileStatic

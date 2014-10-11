@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.ordonteam.shoutify.CenteredLayout
-import com.ordonteam.shoutify.WaitingActivity
+import com.ordonteam.shoutify.waiting.WaitingActivity
 import com.ordonteam.shoutify.gameserver.GameServer
 import groovy.transform.CompileStatic
 import groovy.transform.TypeCheckingMode
