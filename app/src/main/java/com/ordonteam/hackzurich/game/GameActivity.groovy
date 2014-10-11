@@ -2,6 +2,7 @@ package com.ordonteam.hackzurich.game
 import android.app.Activity
 import android.os.Bundle
 import com.ordonteam.hackzurich.gameserver.ClientCallback
+import com.ordonteam.hackzurich.gameserver.GameServerSocket
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -11,7 +12,7 @@ class GameActivity extends Activity implements ClientCallback{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(new GameLayout(this))
-//        GameServerSocket.getGameServerSocket().setClientCallback(this)
+        GameServerSocket.getGameServerSocket().setClientCallback(this)
     }
 
     @Override

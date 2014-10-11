@@ -10,9 +10,20 @@ import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
 
 @CompileStatic
 class GameServer implements Runnable{
+    static private GameServer server
+
+    static GameServer getGameServer(){
+        return server
+    }
+    static GameServer create() {
+        server = new GameServer()
+        return server
+    }
+
     private ServerSocket socket
     private ObjectSocket firstClient
     private ObjectSocket secondClient
+
     private ServerStatus currentStatus = new CreatedStatus();
 
     GameServer() {
