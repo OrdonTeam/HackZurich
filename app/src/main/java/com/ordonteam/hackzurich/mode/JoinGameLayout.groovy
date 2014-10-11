@@ -10,11 +10,10 @@ import com.ordonteam.hackzurich.MainActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class JoinGameLayout extends CenteredLayout {
-
+class JoinGameLayout extends CenteredLayout{
     EditText hostIpAddress
 
-    JoinGameLayout (Activity activity) {
+    JoinGameLayout(Activity activity) {
         super(activity)
         setBackgroundColor(Color.argb(255,69,97,157))
         setPadding(20)
@@ -30,8 +29,8 @@ class JoinGameLayout extends CenteredLayout {
         Button joinGame = new Button(activity)
         joinGame.setText('Join game')
         joinGame.setOnClickListener({
-            Intent intent = new Intent(activity, MainActivity.class)
-            activity.startActivity(intent)
+                Intent intent = new Intent(activity, JoinGameActivity.class)
+                activity.startActivity(intent)
         })
         addView(joinGame)
     }

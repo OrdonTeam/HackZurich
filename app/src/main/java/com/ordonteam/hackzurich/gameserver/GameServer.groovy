@@ -1,5 +1,6 @@
 package com.ordonteam.hackzurich.gameserver
 
+import com.ordonteam.hackzurich.gameserver.messages.ConnectedMessage
 import com.ordonteam.hackzurich.gameserver.messages.Message
 import groovy.transform.CompileStatic
 
@@ -11,6 +12,7 @@ class GameServer implements Runnable{
     private ServerSocket socket
     private ObjectSocket firstClient
     private ObjectSocket secondClient
+    int i = 0
 
     GameServer() {
         startThread(this)
@@ -20,13 +22,17 @@ class GameServer implements Runnable{
     void run() {
         this.socket = new ServerSocket(PORT)
         firstClient = new ObjectSocket(socket.accept())
-        startThread {new ReceiveMessages(firstClient)}
+        startThread (new ReceiveMessages(firstClient))
         secondClient = new ObjectSocket(socket.accept())
-        startThread {new ReceiveMessages(secondClient)}
+        startThread (new ReceiveMessages(secondClient))
     }
 
     void receiveMessage(Message message, ObjectSocket client) {
-        
+        i++
+        if (i==2) {
+            firstClient.sendMessage(new ConnectedMessage())
+            secondClient.sendMessage(new ConnectedMessage())
+        }
     }
 
     class ReceiveMessages implements Runnable {
@@ -37,7 +43,7 @@ class GameServer implements Runnable{
 
         @Override
         void run() {
-            client.receiveMessage()
+            receiveMessage(client.receiveMessage(), client)
         }
     }
 }
