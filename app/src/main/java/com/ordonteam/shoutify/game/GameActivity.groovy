@@ -93,6 +93,7 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onPause(){
+        super.onPause()
         voiceActivator.stop()
         accelerometerActivator.stop()
     }

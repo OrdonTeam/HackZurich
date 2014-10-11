@@ -22,6 +22,7 @@ import static com.ordonteam.shoutify.util.ThreadUtil.startThread
 class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
     EditText hostIpAddress
     private Activity activity
+    private Button joinGame
 
     JoinGameSelectLayout(Activity activity) {
         super(activity)
@@ -40,12 +41,13 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
         hostIpAddress.setTextSize(20)
         addView(hostIpAddress)
 
-        Button joinGame = new Button(activity)
+        joinGame = new Button(activity)
         joinGame.setText('Join game')
         joinGame.setTextSize(20)
         joinGame.setOnClickListener({
             String ipz = hostIpAddress.getText().toString();
             if (ipz ==~ ~/\d+.\d+.\d+.\d+/) {
+                joinGame.setEnabled(false)
                 startThread { tryConnect(ipz) }
             } else {
                 makeText(context, "WRONG IP, YOU MORON", Toast.LENGTH_SHORT).show()
@@ -61,6 +63,7 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
         catch (Ex) {
             post {
                 makeText(context, "CONNECTION UNAVAILABLE, CHECK IP", Toast.LENGTH_SHORT).show();
+                joinGame.setEnabled(true)
             }
         }
     }
