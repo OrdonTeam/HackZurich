@@ -10,8 +10,8 @@ import com.ordonteam.shoutify.gameserver.ClientCallback
 import com.ordonteam.shoutify.gameserver.GameServerSocket
 import com.ordonteam.shoutify.sensors.AccelerometerActivator
 import com.ordonteam.shoutify.sensors.VoiceActivator
+import com.ordonteam.shoutify.util.ThreadUtil
 import groovy.transform.CompileStatic
-
 
 @CompileStatic
 class GameActivity extends Activity implements ClientCallback{
@@ -48,14 +48,7 @@ class GameActivity extends Activity implements ClientCallback{
 
         setContentView(gameLayoutWrapper)
         GameServerSocket.getGameServerSocket().setClientCallback(this)
-        GameServerSocket.getGameServerSocket().ready()
-        new VoiceActivator({
-            gameLayout.charge()
-        })
-        new AccelerometerActivator(this, {
-            GameServerSocket.getGameServerSocket().attack(gameLayout.userChargingProgressbar.progress)
-            gameLayout.resetChargeProgress()
-        })
+        ThreadUtil.delay(1000,{GameServerSocket.getGameServerSocket().ready()})
     }
 
     @Override
@@ -68,6 +61,13 @@ class GameActivity extends Activity implements ClientCallback{
         Log.e('GameActivity','onStarted')
         gameLayoutWrapper.post({
             gameLayoutWrapper.removeView(curtain)
+        })
+        new VoiceActivator({
+            gameLayout.charge()
+        })
+        new AccelerometerActivator(this, {
+            GameServerSocket.getGameServerSocket().attack(gameLayout.userChargingProgressbar.progress)
+            gameLayout.resetChargeProgress()
         })
     }
 
