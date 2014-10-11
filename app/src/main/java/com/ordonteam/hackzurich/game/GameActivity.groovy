@@ -12,10 +12,10 @@ import com.ordonteam.hackzurich.sensors.AccelerometerActivator
 import com.ordonteam.hackzurich.sensors.VoiceActivator
 import groovy.transform.CompileStatic
 
+
 @CompileStatic
 class GameActivity extends Activity implements ClientCallback{
 
-    GameServerSocket gameServerSocket
     GameLayout gameLayout
     RelativeLayout gameLayoutWrapper
     RelativeLayout curtain
@@ -66,7 +66,7 @@ class GameActivity extends Activity implements ClientCallback{
     @Override
     void onStarted() {
         Log.e('GameActivity','onStarted')
-        gameServerSocket.ready()
+        GameServerSocket.getGameServerSocket().ready()
         gameLayoutWrapper.post({
             gameLayoutWrapper.removeView(curtain)
         })

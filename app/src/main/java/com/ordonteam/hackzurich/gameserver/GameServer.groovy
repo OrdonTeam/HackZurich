@@ -51,7 +51,9 @@ class GameServer implements Runnable{
 
         @Override
         void run() {
-            receiveMessage(client.receiveMessage(), client)
+            while(true){
+                receiveMessage(client.receiveMessage(), client)
+            }
         }
     }
 }

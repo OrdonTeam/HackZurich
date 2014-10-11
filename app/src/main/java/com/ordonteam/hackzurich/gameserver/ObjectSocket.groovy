@@ -1,5 +1,6 @@
 package com.ordonteam.hackzurich.gameserver
 
+import android.util.Log
 import com.ordonteam.hackzurich.gameserver.messages.Message
 import groovy.transform.CompileStatic
 
@@ -23,6 +24,7 @@ class ObjectSocket{
     }
 
     void sendMessage(Message message) {
+        Log.e("ObjectSocket","Sending ${message.getClass()}")
         startThread{
             outputStream.writeObject(message)
             outputStream.flush()
