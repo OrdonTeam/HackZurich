@@ -1,4 +1,5 @@
 package com.ordonteam.shoutify.mode
+
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
@@ -10,10 +11,11 @@ import android.widget.Toast
 import com.ordonteam.shoutify.CenteredLayout
 import com.ordonteam.shoutify.game.GameActivity
 import com.ordonteam.shoutify.gameserver.ClientCallback
-import com.ordonteam.shoutify.gameserver.GameServerSocket
 import groovy.transform.CompileStatic
 import groovy.transform.TypeCheckingMode
 
+import static android.widget.Toast.makeText
+import static com.ordonteam.shoutify.gameserver.GameServerSocket.crateGameSocket
 import static com.ordonteam.shoutify.util.ThreadUtil.startThread
 
 @CompileStatic
@@ -24,7 +26,7 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
     JoinGameSelectLayout(Activity activity) {
         super(activity)
         this.activity = activity
-        setBackgroundColor(Color.argb(255,69,97,157))
+        setBackgroundColor(Color.argb(255, 69, 97, 157))
         setPadding(20)
 
         TextView hostIpInfo = new TextView(activity)
@@ -42,21 +44,25 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
         joinGame.setText('Join game')
         joinGame.setTextSize(20)
         joinGame.setOnClickListener({
-            startThread {
-                String ipz = hostIpAddress.getText().toString();
-                if (checkIP(ipz)) {
-                    try {
-                        GameServerSocket.crateGameSocket(ipz, this)
-                    }
-                    catch (Ex) {
-                        post { (Toast.makeText(context, "CONNECTION UNAVAILABLE, CHECK IP", Toast.LENGTH_SHORT)).show(); }
-                    }
-                } else {
-                    post { (Toast.makeText(context, "WRONG IP, YOU MORON", Toast.LENGTH_SHORT)).show(); }
-                }
+            String ipz = hostIpAddress.getText().toString();
+            if (ipz ==~ ~/\d+.\d+.\d+.\d+/) {
+                startThread { tryConnect(ipz) }
+            } else {
+                makeText(context, "WRONG IP, YOU MORON", Toast.LENGTH_SHORT).show()
             }
         })
         addView(joinGame)
+    }
+
+    void tryConnect(String ipAddress) {
+        try {
+            crateGameSocket(ipAddress, this)
+        }
+        catch (Ex) {
+            post {
+                makeText(context, "CONNECTION UNAVAILABLE, CHECK IP", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -71,7 +77,7 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
     }
 
     @Override
-    void onUpdated(int myStatus,int opponentStatus) {
+    void onUpdated(int myStatus, int opponentStatus) {
 
     }
 
@@ -98,14 +104,14 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
         return (flatten.isEmpty() ? 'xxx.xxx.xxx.xxx' : flatten.get(0)).toString()
     }
 
-    private String cutIP(){
+    private String cutIP() {
         String ip = showIps();
         String[] parts = ip.split("\\.")
         String ipPart = parts[0] + "." + parts[1] + "." + parts[2] + "."
         return ipPart
     }
 
-    private Boolean checkIP(String ipz){
+    private Boolean checkIP(String ipz) {
         try {
             Inet4Address.getByName(ipz);
             return true;
