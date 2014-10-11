@@ -11,7 +11,9 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.GridView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.ordonteam.hackzurich.CenteredLayout
 import com.ordonteam.hackzurich.mode.ModeSelectorActivity
@@ -35,6 +37,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
         titleView = new TextView(activity)
         titleView.setText("Your name:")
         titleView.setGravity(Gravity.CENTER_HORIZONTAL)
+        titleView.setTextSize(20)
         addView(titleView)
 
         editText = new EditText(activity)
@@ -44,12 +47,13 @@ class MainLayout extends CenteredLayout implements TextWatcher {
         addView(editText)
 
         button = new Button(activity)
-        button.setText('Next')
+        button.setText('Play')
         button.setOnClickListener({
             Intent intent = new Intent(activity, ModeSelectorActivity.class)
             intent.putExtra("nick", editText.getText().toString());
             activity.startActivity(intent)
         })
+        //button.setLayoutParams(par)
         addView(button);
     }
 
