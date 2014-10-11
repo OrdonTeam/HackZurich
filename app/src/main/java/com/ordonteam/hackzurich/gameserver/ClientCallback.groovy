@@ -6,7 +6,7 @@ public interface ClientCallback {
 
     void onStarted()
 
-    void onUpdated()
+    void onUpdated(int myStatus,int opponentStatus)
 
     void onWin()
 

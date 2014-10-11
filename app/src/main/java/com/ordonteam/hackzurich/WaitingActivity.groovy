@@ -34,7 +34,7 @@ class WaitingActivity extends Activity implements ClientCallback {
     }
 
     @Override
-    void onUpdated() {
+    void onUpdated(int myStatus,int opponentStatus) {
 
     }
 

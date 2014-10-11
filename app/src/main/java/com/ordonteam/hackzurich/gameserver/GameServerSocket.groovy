@@ -1,7 +1,7 @@
 package com.ordonteam.hackzurich.gameserver
 
-import android.util.Log
 import com.ordonteam.hackzurich.gameserver.messages.*
+import com.ordonteam.hackzurich.gameserver.status.UpdatedMessage
 import groovy.transform.CompileStatic
 
 import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
@@ -59,8 +59,13 @@ class GameServerSocket implements Runnable, Serializable {
 
     void receiveMessage() {
         Message message = objectSocket.receiveMessage()
-        Log.e('GameServerSocket','receiving messages not supported yet')
-        clientCallback.onConnected()
+        if(message instanceof ConnectMessage){
+            clientCallback.onConnected()
+        }
+        if(message instanceof UpdatedMessage){
+            UpdatedMessage updatedMessage = (UpdatedMessage) message
+            clientCallback.onUpdated(updatedMessage.myStatus,updatedMessage.opponentStatus)
+        }
         //Try avoid switch here
     }
 }

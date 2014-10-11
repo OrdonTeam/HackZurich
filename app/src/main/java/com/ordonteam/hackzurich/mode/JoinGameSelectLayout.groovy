@@ -2,7 +2,6 @@ package com.ordonteam.hackzurich.mode
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
-import android.text.InputFilter
 import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
@@ -12,8 +11,6 @@ import com.ordonteam.hackzurich.game.GameActivity
 import com.ordonteam.hackzurich.gameserver.ClientCallback
 import com.ordonteam.hackzurich.gameserver.GameServerSocket
 import groovy.transform.CompileStatic
-
-import java.util.regex.Pattern
 
 @CompileStatic
 class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
@@ -55,7 +52,7 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
     }
 
     @Override
-    void onUpdated() {
+    void onUpdated(int myStatus,int opponentStatus) {
 
     }
 

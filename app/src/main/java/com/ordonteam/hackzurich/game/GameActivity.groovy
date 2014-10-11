@@ -36,16 +36,12 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onStarted() {
-
         gameServerSocket.ready()
-
-//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.x,size.y)
-//        setLayoutParams(layoutParams)
     }
 
     @Override
-    void onUpdated() {
-        
+    void onUpdated(int myStatus,int opponentStatus) {
+
     }
 
     @Override
