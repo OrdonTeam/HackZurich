@@ -52,7 +52,7 @@ class GameActivity extends Activity implements ClientCallback{
         setContentView(gameLayoutWrapper)
         GameServerSocket.getGameServerSocket().setClientCallback(this)
 
-        String nick = (String)getIntent().getExtras().getSerializable('nick')
+        String nick = 'nick read from file'
         ThreadUtil.delay(1000,{GameServerSocket.getGameServerSocket().ready(nick)})
     }
 
