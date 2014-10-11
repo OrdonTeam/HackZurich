@@ -13,7 +13,7 @@ class GameServer implements Runnable{
     private ObjectSocket secondClient
 
     GameServer() {
-        startThread{this}
+        startThread(this)
     }
 
     @Override
@@ -25,11 +25,11 @@ class GameServer implements Runnable{
         startThread {new ReceiveMessages(secondClient)}
     }
 
-    void receiveMessage(Message message, ObjectSocket client){
+    void receiveMessage(Message message, ObjectSocket client) {
         
     }
 
-    class ReceiveMessages implements Runnable{
+    class ReceiveMessages implements Runnable {
         ObjectSocket client
         ReceiveMessages(ObjectSocket client) {
             this.client = client

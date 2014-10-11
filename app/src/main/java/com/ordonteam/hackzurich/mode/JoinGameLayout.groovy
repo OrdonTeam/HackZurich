@@ -10,9 +10,11 @@ import com.ordonteam.hackzurich.MainActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class JoinGameLayout extends CenteredLayout{
+class JoinGameLayout extends CenteredLayout {
+
     EditText hostIpAddress
-    JoinGameLayout(Activity activity) {
+
+    JoinGameLayout (Activity activity) {
         super(activity)
         setBackgroundColor(Color.argb(255,69,97,157))
         setPadding(20)

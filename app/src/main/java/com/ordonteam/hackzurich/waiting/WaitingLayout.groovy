@@ -8,7 +8,7 @@ import groovy.transform.TypeCheckingMode
 @CompileStatic
 class WaitingLayout extends CenteredLayout {
 
-    WaitingLayout(Context context) {
+    WaitingLayout (Context context) {
         super(context)
 
         TextView titleView1 = new TextView(context)

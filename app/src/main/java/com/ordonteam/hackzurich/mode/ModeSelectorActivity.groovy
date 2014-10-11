@@ -7,9 +7,11 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class ModeSelectorActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(new ModeSelectorLayout(this))
+        Serializable nick = getIntent().getExtras().getSerializable('nick')
     }
 }

@@ -11,11 +11,12 @@ import groovy.transform.CompileStatic
 import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
 
 @CompileStatic
-class GameServerSocket implements Runnable{
+class GameServerSocket implements Runnable, Serializable {
+
     private ObjectSocket objectSocket
     private ClientCallback clientCallback
 
-    GameServerSocket(String ipAddress, ClientCallback clientCallback) {
+    GameServerSocket (String ipAddress, ClientCallback clientCallback) {
         this.clientCallback = clientCallback
         startThread{
             objectSocket = new ObjectSocket(ipAddress)
