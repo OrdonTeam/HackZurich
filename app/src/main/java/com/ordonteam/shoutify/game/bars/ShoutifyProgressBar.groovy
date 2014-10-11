@@ -29,4 +29,12 @@ class ShoutifyProgressBar extends View {
     ShoutifyProgressBar(Context context) {
         super(context)
     }
+
+    boolean isMoreThanZero() {
+        if(progress > 0){
+            return true
+        } else {
+            return false
+        }
+    }
 }

@@ -10,12 +10,13 @@ import groovy.transform.CompileStatic
 class GameLayout extends RelativeLayout {
 
     int i=100
+    Activity activity
     HealthBar userHealthBar
     UserChargingProgressbar userChargingProgressbar
     HealthBar opponentHealthBar
-
     GameLayout(Activity activity) {
         super(activity)
+        this.activity = activity
 
         userHealthBar = new HealthBar(activity, Color.GREEN)
         RelativeLayout.LayoutParams lp1 = (RelativeLayout.LayoutParams) userHealthBar.getLayoutParams()
@@ -51,10 +52,14 @@ class GameLayout extends RelativeLayout {
     }
 
     void showVictory() {
-
+        post{
+            new GameEndedDialog(activity, "You WIN! You will be redirected to game mode choice.").onCreateDialog(null).show()
+        }
     }
 
     void showDefeated() {
-
+        post {
+            new GameEndedDialog(activity, "You loose... You will be redirected to game mode choice.").onCreateDialog(null).show()
+        }
     }
 }
