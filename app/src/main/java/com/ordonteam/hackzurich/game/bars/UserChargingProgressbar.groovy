@@ -5,8 +5,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
 import android.widget.RelativeLayout
-
 import groovy.transform.CompileStatic
+
+import static com.ordonteam.hackzurich.util.ViewUtil.dpAsPixels
 
 @CompileStatic
 class UserChargingProgressbar extends ShoutifyProgressBar {
@@ -15,8 +16,8 @@ class UserChargingProgressbar extends ShoutifyProgressBar {
     UserChargingProgressbar(Activity activity) {
         super(activity)
         progress = 0
-        size = new Point(ViewUtil.dpAsPixels(250, getResources()),ViewUtil.dpAsPixels(50,getResources()))
-        position = new Point(ViewUtil.dpAsPixels(5,getResources()),ViewUtil.dpAsPixels(5,getResources()))
+        size = new Point(dpAsPixels(250, getResources()),dpAsPixels(50,getResources()))
+        position = new Point(dpAsPixels(5,getResources()),dpAsPixels(5,getResources()))
         paint = new Paint()
         paint.setColor(Color.BLUE)
         border = new Paint()
