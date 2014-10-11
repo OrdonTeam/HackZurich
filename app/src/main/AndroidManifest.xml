@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name">
         <activity
-            android:name=".MainActivity"
+            android:name="com.ordonteam.shoutify.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -22,17 +22,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mode.ModeSelectorActivity"
+            android:name="com.ordonteam.shoutify.mode.ModeSelectorActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".WaitingActivity"
+            android:name="com.ordonteam.shoutify.WaitingActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".game.GameActivity"
+            android:name="com.ordonteam.shoutify.game.GameActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
         </activity>
