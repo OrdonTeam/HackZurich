@@ -15,7 +15,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.ordonteam.hackzurich"
+        applicationId "com.ordonteam.shoutify"
         minSdkVersion 9
         targetSdkVersion 9
         versionCode 1
