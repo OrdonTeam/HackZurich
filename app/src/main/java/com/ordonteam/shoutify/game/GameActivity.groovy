@@ -51,7 +51,9 @@ class GameActivity extends Activity implements ClientCallback{
 
         setContentView(gameLayoutWrapper)
         GameServerSocket.getGameServerSocket().setClientCallback(this)
-        ThreadUtil.delay(1000,{GameServerSocket.getGameServerSocket().ready()})
+
+        String nick = (String)getIntent().getExtras().getSerializable('nick')
+        ThreadUtil.delay(1000,{GameServerSocket.getGameServerSocket().ready(nick)})
     }
 
     @Override

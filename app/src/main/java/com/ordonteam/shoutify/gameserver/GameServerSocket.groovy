@@ -44,8 +44,8 @@ class GameServerSocket implements Runnable, Serializable {
         this.objectSocket.sendMessage(new ConnectMessage())
     }
 
-    void ready() {
-        objectSocket.sendMessage(new ReadyMessage())
+    void ready(String nick) {
+        objectSocket.sendMessage(new ReadyMessage(nick))
     }
 
     void attack(int chargeStatus) {
