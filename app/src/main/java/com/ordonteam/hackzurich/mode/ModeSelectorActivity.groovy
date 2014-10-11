@@ -8,10 +8,19 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class ModeSelectorActivity extends Activity {
 
+    ModeSelectorLayout msl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
-        setContentView(new ModeSelectorLayout(this))
+        msl = new ModeSelectorLayout(this)
+        setContentView(msl)
         Serializable nick = getIntent().getExtras().getSerializable('nick')
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume()
+        msl.createGameLayout.createGameButton.setEnabled(true)
     }
 }

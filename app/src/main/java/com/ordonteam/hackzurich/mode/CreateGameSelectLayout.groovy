@@ -20,6 +20,8 @@ import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
 @CompileStatic
 class CreateGameSelectLayout extends CenteredLayout {
 
+    Button createGameButton
+
     CreateGameSelectLayout (Activity activity) {
         super(activity)
         setBackgroundColor(Color.argb(255,0,157,71))
@@ -36,10 +38,11 @@ class CreateGameSelectLayout extends CenteredLayout {
         userIpAddress.setTextSize(20)
         addView(userIpAddress)
 
-        Button createGameButton = new Button(activity)
+        createGameButton = new Button(activity)
         createGameButton.setText('Create game')
         createGameButton.setTextSize(20)
         createGameButton.setOnClickListener({
+            setEnabled(false)
             GameServer.create()
             Intent intent = new Intent(activity, WaitingActivity.class)
             intent.putExtra('nick','value')

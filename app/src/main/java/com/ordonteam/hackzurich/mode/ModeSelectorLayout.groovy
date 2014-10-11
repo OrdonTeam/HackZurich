@@ -10,16 +10,20 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class ModeSelectorLayout extends LinearLayout {
+
+    CreateGameSelectLayout createGameLayout
+    JoinGameSelectLayout joinGameLayout
+
     ModeSelectorLayout(Activity activity) {
         super(activity)
         setOrientation(LinearLayout.VERTICAL)
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1)
 
-        CreateGameSelectLayout createGameLayout = new CreateGameSelectLayout(activity)
+        createGameLayout = new CreateGameSelectLayout(activity)
         createGameLayout.setLayoutParams(layoutParams)
         addView(createGameLayout)
 
-        JoinGameSelectLayout joinGameLayout = new JoinGameSelectLayout(activity)
+        joinGameLayout = new JoinGameSelectLayout(activity)
         joinGameLayout.setLayoutParams(layoutParams)
         addView(joinGameLayout)
     }
