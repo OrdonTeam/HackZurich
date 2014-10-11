@@ -1,7 +1,10 @@
 package com.ordonteam.shoutify.game
 import android.app.Activity
 import android.graphics.Color
+import android.view.Gravity
 import android.widget.RelativeLayout
+import android.widget.TextView
+import com.ordonteam.shoutify.CenteredLayout
 import com.ordonteam.shoutify.game.bars.HealthBar
 import com.ordonteam.shoutify.game.bars.UserChargingProgressbar
 import groovy.transform.CompileStatic
@@ -60,6 +63,18 @@ class GameLayout extends RelativeLayout {
     void showDefeated() {
         post {
             new GameEndedDialog(activity, "You loose... You will be redirected to game mode choice.").onCreateDialog(null).show()
+        }
+    }
+
+    void setNames(String my, String other) {
+        post{
+            CenteredLayout nicksLayout = new CenteredLayout(activity)
+            TextView nicks = new TextView(activity)
+            nicks.setText("$my \n/\n $other")
+            nicks.setGravity(Gravity.CENTER_HORIZONTAL)
+            nicks.setTextSize(20)
+            nicksLayout.addView(nicks)
+            addView(nicksLayout)
         }
     }
 }

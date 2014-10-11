@@ -22,6 +22,7 @@ class GameActivity extends Activity implements ClientCallback{
     RelativeLayout curtain
     private VoiceActivator voiceActivator
     private AccelerometerActivator accelerometerActivator
+    private String myNick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +53,8 @@ class GameActivity extends Activity implements ClientCallback{
         setContentView(gameLayoutWrapper)
         GameServerSocket.getGameServerSocket().setClientCallback(this)
 
-        String nick = 'nick read from file'
-        ThreadUtil.delay(1000,{GameServerSocket.getGameServerSocket().ready(nick)})
+        myNick = 'myNick read from file'
+        ThreadUtil.delay(1000,{GameServerSocket.getGameServerSocket().ready(this.myNick)})
     }
 
     @Override
@@ -63,6 +64,7 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onStarted(String otherPlayerName) {
+        gameLayout.setNames(myNick,otherPlayerName)
         Log.e('GameActivity','onStarted')
         gameLayoutWrapper.post({
             gameLayoutWrapper.removeView(curtain)
