@@ -1,24 +1,23 @@
 package com.ordonteam.hackzurich.game
-
 import android.app.Activity
+import android.graphics.Color
 import android.widget.RelativeLayout
-import com.ordonteam.hackzurich.game.bars.OpponentHealthBar
 import com.ordonteam.hackzurich.game.bars.UserChargingProgressbar
-import com.ordonteam.hackzurich.game.bars.UserHealthBar
+import com.ordonteam.hackzurich.game.bars.HealthBar
 import groovy.transform.CompileStatic
 
 @CompileStatic
 class GameLayout extends RelativeLayout {
 
     int i=100
-    UserHealthBar userHealthBar
+    HealthBar userHealthBar
     UserChargingProgressbar userChargingProgressbar
-    OpponentHealthBar opponentHealthBar
+    HealthBar opponentHealthBar
 
     GameLayout(Activity activity) {
         super(activity)
 
-        userHealthBar = new UserHealthBar(activity)
+        userHealthBar = new HealthBar(activity, Color.GREEN)
         RelativeLayout.LayoutParams lp1 = (RelativeLayout.LayoutParams) userHealthBar.getLayoutParams()
         lp1.addRule(RelativeLayout.ALIGN_PARENT_LEFT)
         userHealthBar.setLayoutParams(lp1)
@@ -31,7 +30,7 @@ class GameLayout extends RelativeLayout {
         userChargingProgressbar.setLayoutParams(lp2)
         addView(userChargingProgressbar)
 
-        opponentHealthBar = new OpponentHealthBar(activity)
+        opponentHealthBar = new HealthBar(activity, Color.RED)
         RelativeLayout.LayoutParams lp3 = (RelativeLayout.LayoutParams) opponentHealthBar.getLayoutParams()
         lp3.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
         opponentHealthBar.setLayoutParams(lp3)
