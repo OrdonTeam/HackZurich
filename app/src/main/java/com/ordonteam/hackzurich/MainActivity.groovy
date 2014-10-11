@@ -2,10 +2,6 @@ package com.ordonteam.hackzurich
 import android.app.Activity
 import android.os.Bundle
 import android.widget.LinearLayout
-import android.widget.TextView
-import com.ordonteam.hackzurich.mode.CreateGameLayout
-import com.ordonteam.hackzurich.mode.JoinGameLayout
-import com.ordonteam.hackzurich.mode.ModeSelectorActivity
 import com.ordonteam.hackzurich.util.ButtonTextLayout
 import groovy.transform.CompileStatic
 
