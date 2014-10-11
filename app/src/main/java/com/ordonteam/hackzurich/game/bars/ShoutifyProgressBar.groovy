@@ -20,7 +20,7 @@ class ShoutifyProgressBar extends View {
     }
 
     void increaseProgress() {
-        this.progress+=3
+        this.progress+=7
         postInvalidate()
     }
 

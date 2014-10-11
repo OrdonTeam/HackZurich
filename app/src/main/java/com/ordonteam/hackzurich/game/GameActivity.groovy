@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.ordonteam.hackzurich.gameserver.ClientCallback
 import com.ordonteam.hackzurich.gameserver.GameServerSocket
+import com.ordonteam.hackzurich.sensors.AccelerometerActivator
 import com.ordonteam.hackzurich.sensors.VoiceActivator
 import groovy.transform.CompileStatic
 
@@ -21,8 +22,10 @@ class GameActivity extends Activity implements ClientCallback{
         setContentView(gameLayout)
         GameServerSocket.getGameServerSocket().setClientCallback(this)
         new VoiceActivator({
-            Log.e('GameActivity', 'called')
             gameLayout.charge()
+        })
+        new AccelerometerActivator(this, {
+            getGameServerSocket().attack()
         })
     }
 
@@ -42,7 +45,7 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onUpdated() {
-
+        
     }
 
     @Override
