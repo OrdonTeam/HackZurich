@@ -29,7 +29,8 @@ class MainLayout extends CenteredLayout implements TextWatcher {
     MainLayout(Activity activity) {
         super(activity)
 
-
+        setBackgroundColor(Color.argb(255,69,97,157))
+        setPadding(20)
 
         titleView = new TextView(activity)
         titleView.setText("Your name:")
@@ -38,7 +39,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
 
         editText = new EditText(activity)
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewUtil.dpAsPixels(200, getResources()), LinearLayout.LayoutParams.WRAP_CONTENT))
-        editText.text = "Player"
+        editText.setText("Player")
         editText.addTextChangedListener(this);
         addView(editText)
 
@@ -50,16 +51,6 @@ class MainLayout extends CenteredLayout implements TextWatcher {
             activity.startActivity(intent)
         })
         addView(button);
-
-//        GradientDrawable shape =  new GradientDrawable();
-//        shape.setColor(Color.argb(255,69,97,157))
-//        shape.setCornerRadius(10)
-//        shape.setSize(100, 100)
-//        setBackground(shape)
-        setBackgroundColor(Color.argb(255,69,97,157))
-        setPadding(20)
-
-        //startThread { shape.setSize(getCenteredWidth(), getCenteredHeight()) }
     }
 
 
