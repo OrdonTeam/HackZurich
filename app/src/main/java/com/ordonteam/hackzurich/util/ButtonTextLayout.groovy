@@ -1,9 +1,6 @@
 package com.ordonteam.hackzurich.util
-
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
@@ -16,7 +13,7 @@ import com.ordonteam.hackzurich.mode.ModeSelectorActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class ButtonTextLayout extends CenteredLayout {
+class ButtonTextLayout extends CenteredLayout implements TextWatcher{
 
     TextView titleView;
     EditText editText;
@@ -24,9 +21,11 @@ class ButtonTextLayout extends CenteredLayout {
 
     ButtonTextLayout(Activity activity) {
         super(activity)
+
         titleView = new TextView(activity)
         titleView.setText("Your name:")
         titleView.setGravity(Gravity.CENTER_HORIZONTAL)
+        addView(titleView)
 
         button = new Button(activity)
         button.setText('Next')
@@ -36,26 +35,22 @@ class ButtonTextLayout extends CenteredLayout {
             activity.startActivity(intent)
         })
         button.setEnabled(false);
+        addView(button)
 
         editText = new EditText(activity)
-        float scale = getResources().getDisplayMetrics().density;
-        int dpAsPixels = (int) (200*scale + 0.5f);
-        editText.setLayoutParams(new LinearLayout.LayoutParams(dpAsPixels, LinearLayout.LayoutParams.WRAP_CONTENT))
-        editText.addTextChangedListener(new TextWatcher(){
-            public void afterTextChanged(Editable s) {
-                if (editText.text.toString()?.length() == 0){
-                    button.setEnabled(false);
-                }
-                else{
-                    button.setEnabled(true);
-                }
-            }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
-        });
-
-        addView(titleView)
+        editText.setLayoutParams(new LinearLayout.LayoutParams(ViewUtil.dpAsPixels(200,getResources()), LinearLayout.LayoutParams.WRAP_CONTENT))
+        editText.addTextChangedListener(this);
         addView(editText)
-        addView(button)
+
     }
+    public void afterTextChanged(Editable s) {
+        if (editText.text.toString()?.length() == 0){
+            button.setEnabled(false);
+        }
+        else{
+            button.setEnabled(true);
+        }
+    }
+    public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+    public void onTextChanged(CharSequence s, int start, int before, int count){}
 }
