@@ -52,17 +52,15 @@ class GameServerSocket implements Runnable, Serializable {
 
     @Override
     void run() {
-        while (true) {
+        while (true){
             receiveMessage()
         }
     }
 
     void receiveMessage() {
         Message message = objectSocket.receiveMessage()
-        Log.e('GameServerSocket', 'receiving messages not supported yet')
-        startThread{
-            clientCallback.onConnected()
-        }
+        Log.e('GameServerSocket','receiving messages not supported yet')
+        clientCallback.onConnected()
         //Try avoid switch here
     }
 }

@@ -1,4 +1,5 @@
 package com.ordonteam.hackzurich.sensors
+
 import android.media.MediaRecorder
 import groovy.transform.CompileStatic
 

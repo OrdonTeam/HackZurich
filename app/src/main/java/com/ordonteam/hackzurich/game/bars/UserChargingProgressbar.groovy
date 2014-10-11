@@ -12,6 +12,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class UserChargingProgressbar extends ShoutifyProgressBar {
+
     UserChargingProgressbar(Activity activity) {
         super(activity)
         progress = 0
@@ -22,6 +23,7 @@ class UserChargingProgressbar extends ShoutifyProgressBar {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.x,size.y)
         setLayoutParams(layoutParams)
     }
+
     @Override
     public void draw(Canvas canvas){
         canvas.drawRect(position.x,position.y,(int)position.x+size.x*progress/100,position.y+size.y,paint)
