@@ -100,7 +100,7 @@ class GameActivity extends Activity implements ClientCallback{
     @Override
     void onPause(){
         super.onPause()
-        GameServer.getGameServer().shutdown()
+        GameServer.getGameServer()?.shutdown()
         voiceActivator.stop()
         accelerometerActivator.stop()
     }
