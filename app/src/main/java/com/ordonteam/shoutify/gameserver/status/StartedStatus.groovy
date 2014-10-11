@@ -32,9 +32,11 @@ class StartedStatus implements ServerStatus {
             if (player1 <= 0) {
                 first.sendMessage(new LooseMessage())
                 second.sendMessage(new WinMessage())
+                return new EndStatus()
             } else if (player2 <= 0) {
                 first.sendMessage(new WinMessage())
                 second.sendMessage(new LooseMessage())
+                return new EndStatus()
             }
             return this
         } else {
