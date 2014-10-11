@@ -29,15 +29,18 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
 
         TextView hostIpInfo = new TextView(activity)
         hostIpInfo.setText('Please specify host IP:')
+        hostIpInfo.setTextSize(20)
         addView(hostIpInfo)
 
         hostIpAddress = new EditText(activity)
         hostIpAddress.setInputType(InputType.TYPE_CLASS_PHONE)
         hostIpAddress.setText(cutIP())
+        hostIpAddress.setTextSize(20)
         addView(hostIpAddress)
 
         Button joinGame = new Button(activity)
         joinGame.setText('Join game')
+        joinGame.setTextSize(20)
         joinGame.setOnClickListener({
             startThread {
                 String ipz = hostIpAddress.getText().toString();

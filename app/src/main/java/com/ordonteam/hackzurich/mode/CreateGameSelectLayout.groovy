@@ -3,6 +3,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -26,15 +27,18 @@ class CreateGameSelectLayout extends CenteredLayout {
 
         TextView userIpInfo = new TextView(activity)
         userIpInfo.setText('Your IP address:')
+        userIpInfo.setTextSize(20)
         addView(userIpInfo)
 
         EditText userIpAddress = new EditText(activity)
         userIpAddress.setEnabled(false)
         userIpAddress.setText(showIps())
+        userIpAddress.setTextSize(20)
         addView(userIpAddress)
 
         Button createGameButton = new Button(activity)
         createGameButton.setText('Create game')
+        createGameButton.setText(20)
         createGameButton.setOnClickListener({
             GameServer.create()
             Intent intent = new Intent(activity, WaitingActivity.class)
