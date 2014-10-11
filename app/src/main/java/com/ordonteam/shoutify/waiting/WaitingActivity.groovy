@@ -35,7 +35,7 @@ class WaitingActivity extends Activity implements ClientCallback {
     }
 
     @Override
-    void onStarted() {
+    void onStarted(String otherPlayerName) {
 
     }
 

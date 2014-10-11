@@ -62,7 +62,7 @@ class GameActivity extends Activity implements ClientCallback{
     }
 
     @Override
-    void onStarted() {
+    void onStarted(String otherPlayerName) {
         Log.e('GameActivity','onStarted')
         gameLayoutWrapper.post({
             gameLayoutWrapper.removeView(curtain)

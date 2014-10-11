@@ -78,7 +78,8 @@ class GameServerSocket implements Runnable, Serializable {
             clientCallback.onConnected()
         }
         if(message instanceof StartedMessage){
-            clientCallback.onStarted()
+            StartedMessage startedMessage = (StartedMessage) message
+            clientCallback.onStarted(startedMessage.otherPlayerName)
         }
         if(message instanceof UpdatedMessage){
             UpdatedMessage updatedMessage = (UpdatedMessage) message

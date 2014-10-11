@@ -4,7 +4,7 @@ public interface ClientCallback {
 
     void onConnected()
 
-    void onStarted()
+    void onStarted(String otherPlayerName)
 
     void onUpdated(int myStatus,int opponentStatus)
 

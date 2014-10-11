@@ -10,6 +10,8 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class ConnectedStatus implements ServerStatus {
     int i = 0
+    String firstName
+    String secondName
 
     ConnectedStatus() {
         Log.e('ConnectedStatus','Players Connected')
@@ -19,10 +21,16 @@ class ConnectedStatus implements ServerStatus {
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
         Log.e('ConnectedStatus',"receiveMessage ${message.getClass()}")
         if(message instanceof ReadyMessage){
+            ReadyMessage readyMessage = (ReadyMessage) message
+            if(isFirst) {
+                firstName = readyMessage.nick
+            }else {
+                secondName = readyMessage.nick
+            }
             i++
             if (i == 2) {
-                first.sendMessage(new StartedMessage())
-                second.sendMessage(new StartedMessage())
+                first.sendMessage(new StartedMessage(secondName))
+                second.sendMessage(new StartedMessage(firstName))
                 return new StartedStatus()
             } else {
                 return this

@@ -75,7 +75,7 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
     }
 
     @Override
-    void onStarted() {
+    void onStarted(String otherPlayerName) {
 
     }
 
