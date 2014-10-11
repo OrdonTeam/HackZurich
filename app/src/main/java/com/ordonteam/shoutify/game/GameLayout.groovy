@@ -49,4 +49,12 @@ class GameLayout extends RelativeLayout {
         opponentHealthBar.setProgress(opponentStatus)
         userHealthBar.setProgress(myStatus)
     }
+
+    void showVictory() {
+
+    }
+
+    void showDefeated() {
+
+    }
 }

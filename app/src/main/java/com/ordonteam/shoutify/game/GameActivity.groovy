@@ -79,11 +79,13 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onWin() {
-
+        Log.e('GameActivity', 'onWin')
+        gameLayout.showVictory()
     }
 
     @Override
     void onLoose() {
-
+        Log.e('GameActivity', 'onLoose')
+        gameLayout.showDefeated()
     }
 }
