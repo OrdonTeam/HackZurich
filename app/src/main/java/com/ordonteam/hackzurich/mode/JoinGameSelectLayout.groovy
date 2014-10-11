@@ -1,4 +1,5 @@
 package com.ordonteam.hackzurich.mode
+
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
@@ -12,7 +13,7 @@ import com.ordonteam.hackzurich.gameserver.GameServerSocket
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class JoinGameSelectLayout extends CenteredLayout implements ClientCallback{
+class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
     EditText hostIpAddress
 
     JoinGameSelectLayout(Activity activity) {

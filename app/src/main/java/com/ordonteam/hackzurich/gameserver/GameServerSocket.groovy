@@ -14,7 +14,11 @@ import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
 class GameServerSocket implements Runnable, Serializable {
 
     private ObjectSocket objectSocket
-    private ClientCallback clientCallback
+
+    void setClientCallback(ClientCallback clientCallback) {
+        this.clientCallback = clientCallback
+    }
+    private transient ClientCallback clientCallback
 
     GameServerSocket (String ipAddress, ClientCallback clientCallback) {
         this.clientCallback = clientCallback

@@ -12,18 +12,21 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class WaitingActivity extends Activity implements ClientCallback {
 
+    private GameServerSocket gameServerSocket
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         setContentView(new WaitingLayout(applicationContext))
         Serializable nick = getIntent().getExtras().getSerializable('nick')
-        GameServerSocket gameServerSocket = new GameServerSocket('127.0.0.1', this)
+        gameServerSocket = new GameServerSocket('127.0.0.1', this)
     }
 
     @Override
     void onConnected() {
 
         Intent intent = new Intent(this, GameActivity.class)
+        intent.putExtra('gameServerSocket', gameServerSocket)
         this.startActivity(intent)
     }
 
