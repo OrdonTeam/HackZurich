@@ -41,4 +41,13 @@ class GameLayout extends RelativeLayout {
     void charge() {
         userChargingProgressbar.increaseProgress()
     }
+
+    void resetChargeProgress() {
+        userChargingProgressbar.setProgress(0)
+    }
+
+    void updateHealthStatus(int myStatus,int opponentStatus) {
+        opponentHealthBar.setProgress(opponentStatus)
+        userHealthBar.setProgress(myStatus)
+    }
 }

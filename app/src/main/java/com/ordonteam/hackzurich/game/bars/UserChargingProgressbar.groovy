@@ -1,4 +1,5 @@
 package com.ordonteam.hackzurich.game.bars
+
 import android.app.Activity
 import android.graphics.Canvas
 import android.graphics.Color

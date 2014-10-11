@@ -2,7 +2,6 @@ package com.ordonteam.hackzurich.game
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import com.ordonteam.hackzurich.gameserver.ClientCallback
 import com.ordonteam.hackzurich.gameserver.GameServerSocket
 import com.ordonteam.hackzurich.sensors.AccelerometerActivator
@@ -25,7 +24,8 @@ class GameActivity extends Activity implements ClientCallback{
             gameLayout.charge()
         })
         new AccelerometerActivator(this, {
-            getGameServerSocket().attack()
+            GameServerSocket.getGameServerSocket().attack(gameLayout.userChargingProgressbar.progress)
+            gameLayout.resetChargeProgress()
         })
     }
 
@@ -41,7 +41,7 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onUpdated(int myStatus,int opponentStatus) {
-
+        gameLayout.updateHealthStatus(myStatus, opponentStatus)
     }
 
     @Override
