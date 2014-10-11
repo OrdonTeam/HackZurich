@@ -11,8 +11,8 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class StartedStatus implements ServerStatus {
-    int player1 = 100
-    int player2 = 100
+    double player1 = 100
+    double player2 = 100
 
     StartedStatus() {
         Log.e('StartedStatus','Game Started')
@@ -22,13 +22,15 @@ class StartedStatus implements ServerStatus {
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
         Log.e('StartedStatus',"receiveMessage ${message.getClass()}")
         if (message instanceof AttackMessage) {
+            AttackMessage attackMessage = (AttackMessage) message
+            int dmg = attackMessage.chargeStatus
             if (isFirst) {
-                player2 -= 10
+                player2 -= dmg*dmg*dmg/100000
             } else {
-                player1 -= 10
+                player1 -= dmg*dmg*dmg/100000
             }
-            first.sendMessage(new UpdatedMessage(player1, player2))
-            second.sendMessage(new UpdatedMessage(player2, player1))
+            first.sendMessage(new UpdatedMessage((int)player1, (int)player2))
+            second.sendMessage(new UpdatedMessage((int)player2, (int)player1))
             if (player1 <= 0) {
                 first.sendMessage(new LooseMessage())
                 second.sendMessage(new WinMessage())

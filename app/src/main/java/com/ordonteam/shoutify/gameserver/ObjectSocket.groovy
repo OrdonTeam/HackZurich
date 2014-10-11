@@ -32,6 +32,10 @@ class ObjectSocket{
     }
 
     Message receiveMessage() {
-        return (Message) inputStream.readObject()
+        try{
+            return (Message) inputStream.readObject()
+        }catch (StreamCorruptedException ex){
+            return receiveMessage()
+        }
     }
 }

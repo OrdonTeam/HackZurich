@@ -7,7 +7,7 @@ class UpdatedMessage implements Message{
     final int myStatus
     final int opponentStatus
 
-    UpdatedMessage(int opponentStatus, int myStatus) {
+    UpdatedMessage(int myStatus, int opponentStatus) {
         this.opponentStatus = opponentStatus
         this.myStatus = myStatus
     }
