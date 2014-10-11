@@ -1,6 +1,7 @@
 package com.ordonteam.hackzurich.gameserver
 
 import com.ordonteam.hackzurich.gameserver.messages.*
+import com.ordonteam.hackzurich.gameserver.status.StartedStatus
 import com.ordonteam.hackzurich.gameserver.status.UpdatedMessage
 import groovy.transform.CompileStatic
 
@@ -61,6 +62,9 @@ class GameServerSocket implements Runnable, Serializable {
         Message message = objectSocket.receiveMessage()
         if(message instanceof ConnectMessage){
             clientCallback.onConnected()
+        }
+        if(message instanceof StartedStatus){
+            clientCallback.onStarted()
         }
         if(message instanceof UpdatedMessage){
             UpdatedMessage updatedMessage = (UpdatedMessage) message
