@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
 import android.widget.RelativeLayout
-import com.ordonteam.hackzurich.game.bars.ShoutifyProgressBar
 import com.ordonteam.hackzurich.util.ViewUtil
 import groovy.transform.CompileStatic
 
