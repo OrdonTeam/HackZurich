@@ -60,7 +60,7 @@ class GameServerSocket implements Runnable, Serializable {
 
     void receiveMessage() {
         Message message = objectSocket.receiveMessage()
-        if(message instanceof ConnectMessage){
+        if(message instanceof ConnectedMessage){
             clientCallback.onConnected()
         }
         if(message instanceof StartedStatus){
