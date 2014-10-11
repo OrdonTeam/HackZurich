@@ -38,7 +38,7 @@ class CreateGameSelectLayout extends CenteredLayout {
 
         Button createGameButton = new Button(activity)
         createGameButton.setText('Create game')
-        createGameButton.setText(20)
+        createGameButton.setTextSize(20)
         createGameButton.setOnClickListener({
             GameServer.create()
             Intent intent = new Intent(activity, WaitingActivity.class)
