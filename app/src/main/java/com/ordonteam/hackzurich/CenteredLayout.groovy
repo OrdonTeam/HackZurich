@@ -27,6 +27,14 @@ public class CenteredLayout extends RelativeLayout {
         super.addView(centered);
     }
 
+    public int getCenteredWidth(){
+        return centered.getWidth()
+    }
+
+    public int getCenteredHeight(){
+        return centered.getHeight();
+    }
+
     @Override
     public void addView(View child) {
         centered.addView(child);

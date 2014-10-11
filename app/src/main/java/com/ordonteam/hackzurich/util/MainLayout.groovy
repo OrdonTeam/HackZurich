@@ -2,9 +2,13 @@ package com.ordonteam.hackzurich.util
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
+import android.os.AsyncTask
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -12,6 +16,8 @@ import android.widget.TextView
 import com.ordonteam.hackzurich.CenteredLayout
 import com.ordonteam.hackzurich.mode.ModeSelectorActivity
 import groovy.transform.CompileStatic
+
+import static com.ordonteam.hackzurich.util.ThreadUtil.startThread
 
 @CompileStatic
 class MainLayout extends CenteredLayout implements TextWatcher {
@@ -23,6 +29,8 @@ class MainLayout extends CenteredLayout implements TextWatcher {
     MainLayout(Activity activity) {
         super(activity)
 
+
+
         titleView = new TextView(activity)
         titleView.setText("Your name:")
         titleView.setGravity(Gravity.CENTER_HORIZONTAL)
@@ -30,6 +38,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
 
         editText = new EditText(activity)
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewUtil.dpAsPixels(200, getResources()), LinearLayout.LayoutParams.WRAP_CONTENT))
+        editText.text = "Player"
         editText.addTextChangedListener(this);
         addView(editText)
 
@@ -40,9 +49,19 @@ class MainLayout extends CenteredLayout implements TextWatcher {
             intent.putExtra("nick", editText.getText().toString());
             activity.startActivity(intent)
         })
-        button.setEnabled(false);
-        addView(button)
+        addView(button);
+
+        GradientDrawable shape =  new GradientDrawable();
+        shape.setColor(Color.argb(255,69,97,157))
+        shape.setCornerRadius(10)
+        shape.setSize(100, 100)
+        setBackgroundDrawable(shape)
+        shape.setSize(100, 100)
+        //setPadding(20)
+
+        //startThread { shape.setSize(getCenteredWidth(), getCenteredHeight()) }
     }
+
 
     public void afterTextChanged(Editable s) {
         if (editText.text.toString()?.length() == 0) {
@@ -53,6 +72,5 @@ class MainLayout extends CenteredLayout implements TextWatcher {
     }
 
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
     public void onTextChanged(CharSequence s, int start, int before, int count) {}
 }
