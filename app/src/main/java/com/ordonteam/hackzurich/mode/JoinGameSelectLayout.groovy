@@ -10,7 +10,7 @@ import com.ordonteam.hackzurich.MainActivity
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class JoinGameLayout extends CenteredLayout{
+class JoinGameSelectLayout extends CenteredLayout{
     EditText hostIpAddress
 
     JoinGameLayout(Activity activity) {

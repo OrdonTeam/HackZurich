@@ -10,10 +10,10 @@ class ModeSelectorLayout extends LinearLayout {
         super(activity)
         setOrientation(LinearLayout.VERTICAL)
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1)
-        CreateGameLayout createGameLayout = new CreateGameLayout(activity)
+        CreateGameSelectLayout createGameLayout = new CreateGameSelectLayout(activity)
         createGameLayout.setLayoutParams(layoutParams)
         addView(createGameLayout)
-        JoinGameLayout joinGameLayout = new JoinGameLayout(activity)
+        JoinGameSelectLayout joinGameLayout = new JoinGameSelectLayout(activity)
         joinGameLayout.setLayoutParams(layoutParams)
         addView(joinGameLayout)
     }
