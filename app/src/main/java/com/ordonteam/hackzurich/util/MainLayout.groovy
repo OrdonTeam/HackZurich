@@ -51,13 +51,13 @@ class MainLayout extends CenteredLayout implements TextWatcher {
         })
         addView(button);
 
-        GradientDrawable shape =  new GradientDrawable();
-        shape.setColor(Color.argb(255,69,97,157))
-        shape.setCornerRadius(10)
-        shape.setSize(100, 100)
-        setBackgroundDrawable(shape)
-        shape.setSize(100, 100)
-        //setPadding(20)
+//        GradientDrawable shape =  new GradientDrawable();
+//        shape.setColor(Color.argb(255,69,97,157))
+//        shape.setCornerRadius(10)
+//        shape.setSize(100, 100)
+//        setBackground(shape)
+        setBackgroundColor(Color.argb(255,69,97,157))
+        setPadding(20)
 
         //startThread { shape.setSize(getCenteredWidth(), getCenteredHeight()) }
     }
