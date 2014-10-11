@@ -5,6 +5,9 @@ import android.graphics.Point
 import android.view.View
 import groovy.transform.CompileStatic
 
+import static java.lang.Math.max
+import static java.lang.Math.min
+
 @CompileStatic
 class ShoutifyProgressBar extends View {
 
@@ -14,12 +17,12 @@ class ShoutifyProgressBar extends View {
     Point size
 
     void setProgress(int progress) {
-        this.progress = progress
+        this.progress = min(100,max(0,progress))
         postInvalidate()
     }
 
     void increaseProgress() {
-        this.progress+=7
+        this.progress = min(100,max(0,progress+7))
         postInvalidate()
     }
 

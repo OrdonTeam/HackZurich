@@ -24,10 +24,11 @@ class StartedStatus implements ServerStatus {
         if (message instanceof AttackMessage) {
             AttackMessage attackMessage = (AttackMessage) message
             int dmg = attackMessage.chargeStatus
+            double dmgDealt = dmg * dmg * dmg * 1.7 / 100000
             if (isFirst) {
-                player2 -= dmg*dmg*dmg/100000
+                player2 -= dmgDealt
             } else {
-                player1 -= dmg*dmg*dmg/100000
+                player1 -= dmgDealt
             }
             first.sendMessage(new UpdatedMessage((int)player1, (int)player2))
             second.sendMessage(new UpdatedMessage((int)player2, (int)player1))
