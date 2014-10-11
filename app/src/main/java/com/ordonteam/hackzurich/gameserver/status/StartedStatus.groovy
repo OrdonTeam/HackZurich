@@ -1,8 +1,8 @@
 package com.ordonteam.hackzurich.gameserver.status
 
+import android.util.Log
 import com.ordonteam.hackzurich.gameserver.ObjectSocket
-import com.ordonteam.hackzurich.gameserver.messages.AttackMessage
-import com.ordonteam.hackzurich.gameserver.messages.Message
+import com.ordonteam.hackzurich.gameserver.messages.*
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -13,6 +13,7 @@ class StartedStatus implements ServerStatus{
     @Override
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
         if(message instanceof AttackMessage){
+            Log.e('StartedStatus','attack')
             if(isFirst){
                 player2-10
             }else{
