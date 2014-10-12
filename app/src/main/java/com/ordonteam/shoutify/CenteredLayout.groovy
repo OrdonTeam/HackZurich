@@ -48,6 +48,9 @@ public class CenteredLayout extends RelativeLayout {
     public void setBackgroundColor(int color) {
         centered.setBackgroundColor(color)
     }
+    public void superSetBackgroundColor(int color) {
+        setBackgroundColor(color)
+    }
 
     public void setPadding(int sizeInDp) {
         float scale = getResources().getDisplayMetrics().density;

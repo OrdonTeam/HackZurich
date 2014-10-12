@@ -2,6 +2,7 @@ package com.ordonteam.shoutify.game
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Vibrator
 import android.util.Log
 import android.view.WindowManager
 import android.widget.RelativeLayout
@@ -81,6 +82,8 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onUpdated(int myStatus,int opponentStatus) {
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        vibrator.vibrate(500);
         Log.e('GameActivity',"onUpdated $myStatus $opponentStatus")
         gameLayout.updateHealthStatus(myStatus, opponentStatus)
     }

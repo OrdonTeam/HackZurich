@@ -1,21 +1,17 @@
-package com.ordonteam.shoutify.util
-
+package com.ordonteam.shoutify
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.ordonteam.hackzurich.R
-import com.ordonteam.shoutify.CenteredLayout
 import com.ordonteam.shoutify.mode.ModeSelectorActivity
+import com.ordonteam.shoutify.util.FileUtil
+import com.ordonteam.shoutify.util.ViewUtil
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -35,6 +31,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
         titleView.setText("Your name:")
         titleView.setGravity(Gravity.CENTER_HORIZONTAL)
         titleView.setTextSize(20)
+        titleView.setTextColor(Color.BLACK)
         addView(titleView)
 
         editText = new EditText(activity)

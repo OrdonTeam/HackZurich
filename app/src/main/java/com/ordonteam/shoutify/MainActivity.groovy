@@ -6,8 +6,8 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.ordonteam.hackzurich.R
-import com.ordonteam.shoutify.util.MainLayout
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -16,10 +16,12 @@ class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
+        RelativeLayout global = new RelativeLayout(this);
+        global.setBackgroundColor(Color.argb(255,255,123,6))
 
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL)
-        linearLayout.setBackgroundColor(Color.argb(255,255,123,6))
+        CenteredLayout centeredLayout = new CenteredLayout(this);
+        centeredLayout.setOrientation(LinearLayout.VERTICAL)
+        centeredLayout.setBackgroundColor(Color.argb(255,255,123,6))
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1)
 
@@ -30,12 +32,12 @@ class MainActivity extends Activity {
         ImageView imageView = new ImageView(this)
         imageView.setImageDrawable(img)
         imageLayout.addView(imageView)
-        linearLayout.addView(imageLayout)
+        centeredLayout.addView(imageLayout)
 
         MainLayout content = new MainLayout(this)
         content.setLayoutParams(layoutParams)
-        linearLayout.addView(content)
-
-        setContentView(linearLayout)
+        centeredLayout.addView(content)
+        global.addView(centeredLayout)
+        setContentView(global)
     }
 }
