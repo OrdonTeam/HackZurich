@@ -1,18 +1,10 @@
-package com.ordonteam.shoutify.mode
-
+package com.ordonteam.shoutify
 import android.app.Activity
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.ordonteam.hackzurich.R
-import com.ordonteam.shoutify.CenteredLayout
-import com.ordonteam.shoutify.MainLayout
-import com.ordonteam.shoutify.util.ViewUtil
 import groovy.transform.CompileStatic
 
 @CompileStatic
