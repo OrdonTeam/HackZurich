@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.ordonteam.hackzurich.R
+import com.ordonteam.shoutify.util.ViewUtil
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -24,10 +25,11 @@ class MainActivity extends Activity {
         centeredLayout.setBackgroundColor(Color.argb(255,255,123,6))
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1)
+        LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(ViewUtil.dpAsPixels(250,getResources()), ViewUtil.dpAsPixels(250,getResources()), 1)
 
         LinearLayout imageLayout = new LinearLayout(this)
         imageLayout.setOrientation(LinearLayout.VERTICAL)
-        imageLayout.setLayoutParams(layoutParams)
+        imageLayout.setLayoutParams(imageParams)
         Drawable img = getResources().getDrawable(R.drawable.mainlogo)
         ImageView imageView = new ImageView(this)
         imageView.setImageDrawable(img)
