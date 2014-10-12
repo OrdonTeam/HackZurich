@@ -35,6 +35,7 @@ class ObjectSocket{
         try{
             return (Message) inputStream.readObject()
         }catch (StreamCorruptedException ex){
+            ex.printStackTrace()
             return receiveMessage()
         }
     }
