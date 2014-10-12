@@ -13,6 +13,7 @@ import com.ordonteam.shoutify.gameserver.GameServerSocket
 import com.ordonteam.shoutify.sensors.AccelerometerActivator
 import com.ordonteam.shoutify.sensors.VoiceActivator
 import com.ordonteam.shoutify.util.FileUtil
+import com.ordonteam.shoutify.util.MP3Util
 import com.ordonteam.shoutify.util.ThreadUtil
 import groovy.transform.CompileStatic
 
@@ -77,6 +78,7 @@ class GameActivity extends Activity implements ClientCallback{
         accelerometerActivator = new AccelerometerActivator(this, {
             GameServerSocket.getGameServerSocket().attack(gameLayout.userChargingProgressbar.progress)
             gameLayout.resetChargeProgress()
+            MP3Util.playSword(this)
         })
     }
 

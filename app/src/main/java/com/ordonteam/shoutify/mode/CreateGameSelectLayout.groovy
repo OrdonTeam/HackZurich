@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.ordonteam.shoutify.CenteredLayout
+import com.ordonteam.shoutify.util.MP3Util
 import com.ordonteam.shoutify.waiting.WaitingActivity
 import com.ordonteam.shoutify.gameserver.GameServer
 import groovy.transform.CompileStatic
@@ -36,6 +37,7 @@ class CreateGameSelectLayout extends CenteredLayout {
         createGameButton.setText('Create game')
         createGameButton.setTextSize(20)
         createGameButton.setOnClickListener({
+            MP3Util.playSword(activity)
             setEnabled(false)
             GameServer.create()
             Intent intent = new Intent(activity, WaitingActivity.class)

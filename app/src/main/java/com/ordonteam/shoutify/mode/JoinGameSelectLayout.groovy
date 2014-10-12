@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.ordonteam.shoutify.CenteredLayout
 import com.ordonteam.shoutify.game.GameActivity
 import com.ordonteam.shoutify.gameserver.ClientCallback
+import com.ordonteam.shoutify.util.MP3Util
 import groovy.transform.CompileStatic
 import groovy.transform.TypeCheckingMode
 
@@ -45,6 +46,7 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
         joinGame.setText('Join game')
         joinGame.setTextSize(20)
         joinGame.setOnClickListener({
+            MP3Util.playSword(activity)
             String ipz = hostIpAddress.getText().toString();
             if (ipz ==~ ~/\d+.\d+.\d+.\d+/) {
                 joinGame.setEnabled(false)

@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.ordonteam.shoutify.mode.ModeSelectorActivity
 import com.ordonteam.shoutify.util.FileUtil
+import com.ordonteam.shoutify.util.MP3Util
 import com.ordonteam.shoutify.util.ViewUtil
 import groovy.transform.CompileStatic
 
@@ -44,6 +45,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
         button.setText('Play')
         button.setTextSize(20)
         button.setOnClickListener({
+            MP3Util.playSword(activity)
             Intent intent = new Intent(activity, ModeSelectorActivity.class)
             FileUtil.saveNick(activity,editText.getText().toString())
             activity.startActivity(intent)
