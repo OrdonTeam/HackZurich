@@ -11,6 +11,7 @@ import com.ordonteam.shoutify.gameserver.GameServer
 import com.ordonteam.shoutify.gameserver.GameServerSocket
 import com.ordonteam.shoutify.sensors.AccelerometerActivator
 import com.ordonteam.shoutify.sensors.VoiceActivator
+import com.ordonteam.shoutify.util.FileUtil
 import com.ordonteam.shoutify.util.ThreadUtil
 import groovy.transform.CompileStatic
 
@@ -53,7 +54,7 @@ class GameActivity extends Activity implements ClientCallback{
         setContentView(gameLayoutWrapper)
         GameServerSocket.getGameServerSocket().setClientCallback(this)
 
-        myNick = 'myNick read from file'
+        myNick = FileUtil.readNick(this)
         ThreadUtil.delay(1000,{GameServerSocket.getGameServerSocket().ready(this.myNick)})
     }
 
