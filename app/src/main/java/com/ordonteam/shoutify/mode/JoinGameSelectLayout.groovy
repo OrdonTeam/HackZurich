@@ -52,10 +52,11 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
                 joinGame.setEnabled(false)
                 startThread { tryConnect(ipz) }
             } else {
-                makeText(context, "WRONG IP, YOU MORON", Toast.LENGTH_SHORT).show()
+                makeText(context, "Check your IP and try again", Toast.LENGTH_SHORT).show()
             }
         })
         addView(joinGame)
+
     }
 
     void tryConnect(String ipAddress) {
@@ -64,7 +65,7 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
         }
         catch (Ex) {
             post {
-                makeText(context, "CONNECTION UNAVAILABLE, CHECK IP", Toast.LENGTH_SHORT).show();
+                makeText(context, "Connection unavailable, check your IP", Toast.LENGTH_SHORT).show();
                 joinGame.setEnabled(true)
             }
         }

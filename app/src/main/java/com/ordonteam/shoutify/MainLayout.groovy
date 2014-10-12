@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.ordonteam.shoutify.mode.ModeSelectorActivity
+import com.ordonteam.shoutify.mode.NoobActivity
 import com.ordonteam.shoutify.util.FileUtil
 import com.ordonteam.shoutify.util.MP3Util
 import com.ordonteam.shoutify.util.ViewUtil
@@ -21,6 +22,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
     TextView titleView;
     EditText editText;
     Button button;
+    Button button2;
 
     MainLayout(Activity activity) {
         super(activity)
@@ -51,6 +53,15 @@ class MainLayout extends CenteredLayout implements TextWatcher {
             activity.startActivity(intent)
         })
         addView(button)
+
+        button2 = new Button(activity)
+        button2.setText('Help')
+        button2.setTextSize(20)
+        button2.setOnClickListener({
+            Intent intent = new Intent(activity, NoobActivity.class)
+            activity.startActivity(intent)
+        })
+        addView(button2)
 
     }
 

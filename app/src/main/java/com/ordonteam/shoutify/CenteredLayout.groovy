@@ -1,6 +1,7 @@
 package com.ordonteam.shoutify
 
 import android.content.Context
+import android.os.Environment
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -57,4 +58,5 @@ public class CenteredLayout extends RelativeLayout {
         int dpAsPixels = (int) (sizeInDp*scale + 0.5f);
         centered.setPadding(dpAsPixels, dpAsPixels, dpAsPixels, dpAsPixels)
     }
+
 }
