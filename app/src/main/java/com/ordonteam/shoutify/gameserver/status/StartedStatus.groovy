@@ -15,12 +15,12 @@ class StartedStatus implements ServerStatus {
     double player2 = 100
 
     StartedStatus() {
-        Log.e('StartedStatus','Game Started')
+        Log.d('StartedStatus','Game Started')
     }
 
     @Override
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
-        Log.e('StartedStatus',"receiveMessage ${message.getClass()}")
+        Log.d('StartedStatus',"receiveMessage ${message.getClass()}")
         if (message instanceof AttackMessage) {
             AttackMessage attackMessage = (AttackMessage) message
             int dmg = attackMessage.chargeStatus

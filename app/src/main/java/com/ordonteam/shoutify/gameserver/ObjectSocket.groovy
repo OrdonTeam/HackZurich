@@ -24,7 +24,7 @@ class ObjectSocket{
     }
 
     void sendMessage(Message message) {
-        Log.e("ObjectSocket","Sending ${message.getClass()}")
+        Log.d("ObjectSocket","Sending ${message.getClass()}")
         startThread{
             outputStream.writeObject(message)
             outputStream.flush()

@@ -68,7 +68,7 @@ class GameActivity extends Activity implements ClientCallback{
     @Override
     void onStarted(String otherPlayerName) {
         gameLayout.setNames(myNick,otherPlayerName)
-        Log.e('GameActivity','onStarted')
+        Log.d('GameActivity','onStarted')
         gameLayoutWrapper.post({
             gameLayoutWrapper.removeView(curtain)
         })
@@ -77,8 +77,13 @@ class GameActivity extends Activity implements ClientCallback{
         })
         accelerometerActivator = new AccelerometerActivator(this, {
             GameServerSocket.getGameServerSocket().attack(gameLayout.userChargingProgressbar.progress)
+            if(gameLayout.userChargingProgressbar.progress>30)
+                MP3Util.playSword(this)
+            if(gameLayout.userChargingProgressbar.progress>60)
+                MP3Util.playSword(this)
+            if(gameLayout.userChargingProgressbar.progress>90)
+                MP3Util.playSword(this)
             gameLayout.resetChargeProgress()
-            MP3Util.playSword(this)
         })
     }
 
@@ -92,13 +97,13 @@ class GameActivity extends Activity implements ClientCallback{
 
     @Override
     void onWin() {
-        Log.e('GameActivity', 'onWin')
+        Log.d('GameActivity', 'onWin')
         gameLayout.showVictory()
     }
 
     @Override
     void onLoose() {
-        Log.e('GameActivity', 'onLoose')
+        Log.d('GameActivity', 'onLoose')
         gameLayout.showDefeated()
     }
 
@@ -111,7 +116,7 @@ class GameActivity extends Activity implements ClientCallback{
     void onPause(){
         super.onPause()
         GameServer.getGameServer()?.shutdown()
-        voiceActivator.stop()
-        accelerometerActivator.stop()
+        voiceActivator?.stop()
+        accelerometerActivator?.stop()
     }
 }

@@ -14,12 +14,12 @@ class ConnectedStatus implements ServerStatus {
     String secondName
 
     ConnectedStatus() {
-        Log.e('ConnectedStatus','Players Connected')
+        Log.d('ConnectedStatus','Players Connected')
     }
 
     @Override
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
-        Log.e('ConnectedStatus',"receiveMessage ${message.getClass()}")
+        Log.d('ConnectedStatus',"receiveMessage ${message.getClass()}")
         if(message instanceof ReadyMessage){
             ReadyMessage readyMessage = (ReadyMessage) message
             if(isFirst) {

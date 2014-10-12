@@ -13,12 +13,12 @@ class CreatedStatus implements ServerStatus {
     int i = 0
 
     CreatedStatus() {
-        Log.e('CreatedStatus','Game Created')
+        Log.d('CreatedStatus','Game Created')
     }
 
     @Override
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
-        Log.e('CreatedStatus',"receiveMessage ${message.getClass()}")
+        Log.d('CreatedStatus',"receiveMessage ${message.getClass()}")
         if(message instanceof ConnectMessage) {
             i++
             if (i == 2) {
