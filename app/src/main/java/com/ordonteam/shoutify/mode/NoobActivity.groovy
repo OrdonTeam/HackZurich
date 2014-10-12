@@ -31,7 +31,7 @@ class NoobActivity extends Activity{
 (blue bar) and shake it to attack your opponent.
 Your health bar is displayed on the left
 (green bar), your opponent\'s on the right
-(red bar). First person to loose their health
+(red bar). First person to lose their health
 loses. GOOD LUCK!""")
 
         info.setTextSize(20)
