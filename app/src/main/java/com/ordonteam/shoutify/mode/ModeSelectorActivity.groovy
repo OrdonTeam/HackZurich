@@ -14,7 +14,6 @@ class ModeSelectorActivity extends Activity {
         super.onCreate(savedInstanceState)
         msl = new ModeSelectorLayout(this)
         setContentView(msl)
-        Serializable nick = getIntent().getExtras().getSerializable('nick')
     }
 
     @Override

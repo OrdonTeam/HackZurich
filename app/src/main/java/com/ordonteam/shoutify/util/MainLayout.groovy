@@ -35,7 +35,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
 
         editText = new EditText(activity)
         editText.setLayoutParams(new LinearLayout.LayoutParams(ViewUtil.dpAsPixels(200, getResources()), LinearLayout.LayoutParams.WRAP_CONTENT))
-        editText.setText("Player")
+        editText.setText(FileUtil.readNick(activity))
         editText.addTextChangedListener(this);
         addView(editText)
 
@@ -44,7 +44,8 @@ class MainLayout extends CenteredLayout implements TextWatcher {
         button.setTextSize(20)
         button.setOnClickListener({
             Intent intent = new Intent(activity, ModeSelectorActivity.class)
-            intent.putExtra("nick", editText.getText().toString());
+//            intent.putExtra("nick", editText.getText().toString());
+            FileUtil.saveNick(activity,editText.getText().toString())
             activity.startActivity(intent)
         })
         //button.setLayoutParams(par)
