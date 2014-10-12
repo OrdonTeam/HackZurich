@@ -38,7 +38,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.ordonteam.shoutify.mode.NoobActivity"
+            android:name="com.ordonteam.shoutify.NoobActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
         </activity>

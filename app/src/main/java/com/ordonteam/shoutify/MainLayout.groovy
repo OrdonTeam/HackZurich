@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.ordonteam.shoutify.mode.ModeSelectorActivity
-import com.ordonteam.shoutify.mode.NoobActivity
 import com.ordonteam.shoutify.util.FileUtil
 import com.ordonteam.shoutify.util.MP3Util
 import com.ordonteam.shoutify.util.ViewUtil
