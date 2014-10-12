@@ -2,14 +2,18 @@ package com.ordonteam.shoutify.util
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.ordonteam.hackzurich.R
 import com.ordonteam.shoutify.CenteredLayout
 import com.ordonteam.shoutify.mode.ModeSelectorActivity
 import groovy.transform.CompileStatic
@@ -24,7 +28,7 @@ class MainLayout extends CenteredLayout implements TextWatcher {
     MainLayout(Activity activity) {
         super(activity)
 
-        setBackgroundColor(Color.argb(255,69,97,157))
+        setBackgroundColor(Color.argb(255,255,123,6))
         setPadding(20)
 
         titleView = new TextView(activity)
@@ -44,12 +48,11 @@ class MainLayout extends CenteredLayout implements TextWatcher {
         button.setTextSize(20)
         button.setOnClickListener({
             Intent intent = new Intent(activity, ModeSelectorActivity.class)
-//            intent.putExtra("nick", editText.getText().toString());
             FileUtil.saveNick(activity,editText.getText().toString())
             activity.startActivity(intent)
         })
-        //button.setLayoutParams(par)
-        addView(button);
+        addView(button)
+
     }
 
 
