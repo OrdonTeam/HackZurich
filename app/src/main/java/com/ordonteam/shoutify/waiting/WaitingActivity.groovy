@@ -20,7 +20,7 @@ class WaitingActivity extends Activity implements ClientCallback {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         WaitingLayout look = new WaitingLayout(applicationContext)
         look.setPadding(20)
-        look.setBackgroundColor(Color.argb(255,69,97,157))
+        look.setBackgroundColor(Color.argb(255,0,157,71))
         setContentView(look)
 
         Serializable nick = getIntent().getExtras().getSerializable('nick')

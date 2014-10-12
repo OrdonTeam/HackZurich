@@ -78,9 +78,9 @@ class GameActivity extends Activity implements ClientCallback{
         accelerometerActivator = new AccelerometerActivator(this, {
             GameServerSocket.getGameServerSocket().attack(gameLayout.userChargingProgressbar.progress)
             if(gameLayout.userChargingProgressbar.progress>30)
-                MP3Util.playSword(this)
+                MP3Util.play3(this)
             if(gameLayout.userChargingProgressbar.progress>60)
-                MP3Util.playSword(this)
+                MP3Util.play1(this)
             if(gameLayout.userChargingProgressbar.progress>90)
                 MP3Util.playSword(this)
             gameLayout.resetChargeProgress()
