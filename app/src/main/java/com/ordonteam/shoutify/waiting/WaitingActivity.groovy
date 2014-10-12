@@ -23,7 +23,6 @@ class WaitingActivity extends Activity implements ClientCallback {
         look.setBackgroundColor(Color.argb(255,0,157,71))
         setContentView(look)
 
-        Serializable nick = getIntent().getExtras().getSerializable('nick')
         gameServerSocket = GameServerSocket.crateGameSocket('127.0.0.1', this)
     }
 

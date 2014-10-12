@@ -41,7 +41,6 @@ class CreateGameSelectLayout extends CenteredLayout {
             setEnabled(false)
             GameServer.create()
             Intent intent = new Intent(activity, WaitingActivity.class)
-            intent.putExtra('nick','value')
             activity.startActivity(intent)
         })
         addView(createGameButton)
