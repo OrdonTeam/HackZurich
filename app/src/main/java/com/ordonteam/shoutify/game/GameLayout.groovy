@@ -9,6 +9,8 @@ import com.ordonteam.shoutify.game.bars.HealthBar
 import com.ordonteam.shoutify.game.bars.UserChargingProgressbar
 import groovy.transform.CompileStatic
 
+import static com.ordonteam.shoutify.util.ViewUtil.getNewRelativeMatchParent
+
 @CompileStatic
 class GameLayout extends RelativeLayout {
 
@@ -20,6 +22,7 @@ class GameLayout extends RelativeLayout {
     GameLayout(Activity activity) {
         super(activity)
         this.activity = activity
+        setLayoutParams(newRelativeMatchParent)
 
         userHealthBar = new HealthBar(activity, Color.GREEN)
         RelativeLayout.LayoutParams lp1 = (RelativeLayout.LayoutParams) userHealthBar.getLayoutParams()
