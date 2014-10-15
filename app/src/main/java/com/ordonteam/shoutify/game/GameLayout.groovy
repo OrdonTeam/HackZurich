@@ -56,13 +56,13 @@ class GameLayout extends RelativeLayout {
 
     void showVictory() {
         post{
-            new GameEndedDialog(activity, "You WIN! You will be redirected to game mode choice.").onCreateDialog(null).show()
+            new GameEndedDialog(activity).showDialog("You WIN! You will be redirected to game mode choice.")
         }
     }
 
     void showDefeated() {
         post {
-            new GameEndedDialog(activity, "You loose... You will be redirected to game mode choice.").onCreateDialog(null).show()
+            new GameEndedDialog(activity).showDialog("You loose... You will be redirected to game mode choice.")
         }
     }
 
