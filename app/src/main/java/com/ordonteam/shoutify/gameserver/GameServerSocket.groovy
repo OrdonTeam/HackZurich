@@ -1,16 +1,6 @@
 package com.ordonteam.shoutify.gameserver
-
 import android.util.Log
-import com.ordonteam.shoutify.gameserver.messages.AttackMessage
-import com.ordonteam.shoutify.gameserver.messages.ConnectMessage
-import com.ordonteam.shoutify.gameserver.messages.ConnectedMessage
-import com.ordonteam.shoutify.gameserver.messages.DisconnectMessage
-import com.ordonteam.shoutify.gameserver.messages.LooseMessage
-import com.ordonteam.shoutify.gameserver.messages.Message
-import com.ordonteam.shoutify.gameserver.messages.ReadyMessage
-import com.ordonteam.shoutify.gameserver.messages.StartedMessage
-import com.ordonteam.shoutify.gameserver.messages.UpdatedMessage
-import com.ordonteam.shoutify.gameserver.messages.WinMessage
+import com.ordonteam.shoutify.gameserver.messages.*
 import groovy.transform.CompileStatic
 
 import static com.ordonteam.shoutify.util.ThreadUtil.startThread
@@ -19,26 +9,29 @@ import static com.ordonteam.shoutify.util.ThreadUtil.startThread
 class GameServerSocket implements Runnable, Serializable {
 
     static GameServerSocket gameServerSocket
-
     static GameServerSocket crateGameSocket(String ipAddress, ClientCallback clientCallback) throws java.net.ConnectException {
-        GameServerSocket socket = new GameServerSocket(ipAddress, clientCallback)
-        gameServerSocket = socket
-        return socket
+        GameServerSocket gameServerSocket = new GameServerSocket(ipAddress, clientCallback)
+        gameServerSocket.start()
+        return gameServerSocket
     }
-
     static GameServerSocket getGameSocket() {
         return gameServerSocket
     }
 
     private ObjectSocket objectSocket
     private transient ClientCallback clientCallback
+    private String ipAddress
 
     void setClientCallback(ClientCallback clientCallback) {
         this.clientCallback = clientCallback
     }
 
     private GameServerSocket(String ipAddress, ClientCallback clientCallback) {
+        this.ipAddress = ipAddress
         this.clientCallback = clientCallback
+    }
+
+    void start(){
         objectSocket = new ObjectSocket(ipAddress)
         startThread(this)
         this.objectSocket.sendMessage(new ConnectMessage())

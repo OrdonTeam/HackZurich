@@ -8,6 +8,7 @@ import groovy.transform.CompileStatic
 class EndStatus implements ServerStatus{
     @Override
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
+        //Ignoring all incoming messages
         return this
     }
 }

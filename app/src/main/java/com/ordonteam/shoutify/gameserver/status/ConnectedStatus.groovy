@@ -9,7 +9,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class ConnectedStatus implements ServerStatus {
-    int i = 0
+    int readyClients = 0
     String firstName
     String secondName
 
@@ -21,22 +21,30 @@ class ConnectedStatus implements ServerStatus {
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
         Log.d('ConnectedStatus',"receiveMessage ${message.getClass()}")
         if(message instanceof ReadyMessage){
-            ReadyMessage readyMessage = (ReadyMessage) message
-            if(isFirst) {
-                firstName = readyMessage.nick
-            }else {
-                secondName = readyMessage.nick
-            }
-            i++
-            if (i == 2) {
-                first.sendMessage(new StartedMessage(secondName))
-                second.sendMessage(new StartedMessage(firstName))
-                return new StartedStatus()
-            } else {
-                return this
-            }
+            return readyClient(message, isFirst, first, second)
         }else{
             throw new RuntimeException("Server received unexpected message ${message.getClass()}")
+        }
+    }
+
+    private ServerStatus readyClient(ReadyMessage readyMessage, boolean isFirst, ObjectSocket first, ObjectSocket second) {
+        applyPlayerName(isFirst, readyMessage)
+
+        readyClients++
+        if (readyClients == 2) {
+            first.sendMessage(new StartedMessage(secondName))
+            second.sendMessage(new StartedMessage(firstName))
+            return new StartedStatus()
+        } else {
+            return this
+        }
+    }
+
+    private void applyPlayerName(boolean isFirst, ReadyMessage readyMessage) {
+        if (isFirst) {
+            firstName = readyMessage.nick
+        } else {
+            secondName = readyMessage.nick
         }
     }
 }
