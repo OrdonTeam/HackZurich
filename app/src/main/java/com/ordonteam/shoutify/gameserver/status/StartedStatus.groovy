@@ -1,5 +1,4 @@
 package com.ordonteam.shoutify.gameserver.status
-
 import android.util.Log
 import com.ordonteam.shoutify.gameserver.ObjectSocket
 import com.ordonteam.shoutify.gameserver.messages.AttackMessage
