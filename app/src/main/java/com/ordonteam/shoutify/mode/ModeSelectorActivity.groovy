@@ -19,7 +19,6 @@ class ModeSelectorActivity extends Activity {
     @Override
     public void onResume(){
         super.onResume()
-        msl.createGameLayout.createGameButton.setEnabled(true)
-        msl.joinGameLayout.joinGame.setEnabled(true)
+        msl.onResume()
     }
 }

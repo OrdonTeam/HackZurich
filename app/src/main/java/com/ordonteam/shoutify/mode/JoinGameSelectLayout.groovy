@@ -4,26 +4,32 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.text.InputType
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.ordonteam.shoutify.CenteredLayout
 import com.ordonteam.shoutify.game.GameActivity
-import com.ordonteam.shoutify.gameserver.ClientCallback
+import com.ordonteam.shoutify.gameserver.messages.ClientCallback
+import com.ordonteam.shoutify.gameserver.messages.EmptyClientCallback
 import com.ordonteam.shoutify.util.MP3Util
+import com.ordonteam.shoutify.waiting.IpUtil
 import groovy.transform.CompileStatic
-import groovy.transform.TypeCheckingMode
 
 import static android.widget.Toast.makeText
 import static com.ordonteam.shoutify.gameserver.GameServerSocket.crateGameSocket
 import static com.ordonteam.shoutify.util.ThreadUtil.startThread
+import static com.ordonteam.shoutify.waiting.IpUtil.getPartialIp
 
 @CompileStatic
-class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
+class JoinGameSelectLayout extends CenteredLayout implements ClientCallback, View.OnClickListener {
     EditText hostIpAddress
     private Activity activity
     Button joinGame
+
+    @Delegate
+    ClientCallback delegate = new EmptyClientCallback()
 
     JoinGameSelectLayout(Activity activity) {
         super(activity)
@@ -38,37 +44,15 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
 
         hostIpAddress = new EditText(activity)
         hostIpAddress.setInputType(InputType.TYPE_CLASS_PHONE)
-        hostIpAddress.setText(cutIP())
+        hostIpAddress.setText(partialIp)
         hostIpAddress.setTextSize(20)
         addView(hostIpAddress)
 
         joinGame = new Button(activity)
         joinGame.setText('Join game')
         joinGame.setTextSize(20)
-        joinGame.setOnClickListener({
-            MP3Util.playSword(activity)
-            String ipz = hostIpAddress.getText().toString();
-            if (ipz ==~ ~/\d+.\d+.\d+.\d+/) {
-                joinGame.setEnabled(false)
-                startThread { tryConnect(ipz) }
-            } else {
-                makeText(context, "Check your IP and try again", Toast.LENGTH_SHORT).show()
-            }
-        })
+        joinGame.setOnClickListener(this)
         addView(joinGame)
-
-    }
-
-    void tryConnect(String ipAddress) {
-        try {
-            crateGameSocket(ipAddress, this)
-        }
-        catch (Ex) {
-            post {
-                makeText(context, "Connection unavailable, check your IP", Toast.LENGTH_SHORT).show();
-                joinGame.setEnabled(true)
-            }
-        }
     }
 
     @Override
@@ -78,57 +62,37 @@ class JoinGameSelectLayout extends CenteredLayout implements ClientCallback {
     }
 
     @Override
-    void onStarted(String otherPlayerName) {
-
-    }
-
-    @Override
-    void onUpdated(int myStatus, int opponentStatus) {
-
-    }
-
-    @Override
-    void onWin() {
-
-    }
-
-    @Override
-    void onLoose() {
-
-    }
-
-    @Override
     void onDisconnect() {
         activity.finish()
     }
 
-    @CompileStatic(TypeCheckingMode.SKIP)
-    private String showIps() {
-        List<String> flatten = NetworkInterface.getNetworkInterfaces().collect { NetworkInterface ni ->
-            ni.inetAddresses.collect { InetAddress ia ->
-                ia.getHostAddress()
+    @Override
+    void onClick(View view) {
+        MP3Util.playSword(activity)
+        String ipz = hostIpAddress.getText().toString();
+        if (IpUtil.isProperExternalIp.call(ipz)) {
+            joinGame.setEnabled(false)
+            startThread {
+                tryConnect(ipz)
             }
-        }.flatten().findAll { String host ->
-            host ==~ ~/\d+.\d+.\d+.\d+/ && host != '127.0.0.1'
+        } else {
+            makeText(context, "Check your IP and try again", Toast.LENGTH_SHORT).show()
         }
-
-        return (flatten.isEmpty() ? 'xxx.xxx.xxx.xxx' : flatten.get(0)).toString()
     }
 
-    private String cutIP() {
-        String ip = showIps();
-        String[] parts = ip.split("\\.")
-        String ipPart = parts[0] + "." + parts[1] + "." + parts[2] + "."
-        return ipPart
-    }
-
-    private Boolean checkIP(String ipz) {
+    void tryConnect(String ipAddress) {
         try {
-            Inet4Address.getByName(ipz);
-            return true;
+            crateGameSocket(ipAddress, this)
         }
-        catch (Ex) {
-            return false;
+        catch (Exception e) {
+            post {
+                makeText(context, "Connection unavailable, check your IP", Toast.LENGTH_SHORT).show();
+                joinGame.setEnabled(true)
+            }
         }
+    }
+
+    void onResume() {
+        joinGame.setEnabled(true)
     }
 }

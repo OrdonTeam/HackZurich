@@ -5,7 +5,7 @@ import android.os.Vibrator
 import android.util.Log
 import android.view.WindowManager
 import android.widget.RelativeLayout
-import com.ordonteam.shoutify.gameserver.ClientCallback
+import com.ordonteam.shoutify.gameserver.messages.ClientCallback
 import com.ordonteam.shoutify.gameserver.GameServer
 import com.ordonteam.shoutify.gameserver.GameServerSocket
 import com.ordonteam.shoutify.sensors.AccelerometerActivator

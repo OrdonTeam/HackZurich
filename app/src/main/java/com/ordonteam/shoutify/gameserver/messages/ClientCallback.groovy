@@ -1,4 +1,4 @@
-package com.ordonteam.shoutify.gameserver
+package com.ordonteam.shoutify.gameserver.messages
 
 public interface ClientCallback {
 

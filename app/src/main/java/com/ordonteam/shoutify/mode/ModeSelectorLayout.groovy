@@ -23,4 +23,9 @@ class ModeSelectorLayout extends LinearLayout {
         joinGameLayout.setLayoutParams(layoutParams)
         addView(joinGameLayout)
     }
+
+    void onResume() {
+        createGameLayout.onResume()
+        joinGameLayout.onResume()
+    }
 }
