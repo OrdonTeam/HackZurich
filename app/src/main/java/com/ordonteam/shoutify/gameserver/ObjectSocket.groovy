@@ -23,7 +23,7 @@ class ObjectSocket{
         inputStream = new ObjectInputStream(socket.getInputStream())
     }
 
-    void sendMessage(Message message) {
+    void sendMessage(Serializable message) {
         Log.d("ObjectSocket","Sending ${message.getClass()}")
         startThread{
             outputStream.writeObject(message)

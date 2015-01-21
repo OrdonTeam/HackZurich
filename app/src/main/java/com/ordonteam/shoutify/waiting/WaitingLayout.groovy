@@ -1,16 +1,18 @@
 package com.ordonteam.shoutify.waiting
 import android.content.Context
+import android.graphics.Color
 import android.view.Gravity
 import android.widget.TextView
 import com.ordonteam.shoutify.CenteredLayout
 import groovy.transform.CompileStatic
-import groovy.transform.TypeCheckingMode
 
 @CompileStatic
 class WaitingLayout extends CenteredLayout {
 
     WaitingLayout (Context context) {
         super(context)
+        setPadding(20)
+        setBackgroundColor(Color.argb(255,0,157,71))
 
         TextView titleView1 = new TextView(context)
         titleView1.setText('Waiting')
@@ -37,22 +39,9 @@ class WaitingLayout extends CenteredLayout {
         addView(titleView4)
 
         TextView titleView5 = new TextView(context)
-        titleView5.setText(showIps())
+        titleView5.setText(IpUtil.getIpAddress())
         titleView5.setTextSize(20)
         titleView5.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         addView(titleView5)
-    }
-
-    @CompileStatic(TypeCheckingMode.SKIP)
-    private String showIps() {
-        List<String> flatten = NetworkInterface.getNetworkInterfaces().collect { NetworkInterface ni ->
-            ni.inetAddresses.collect { InetAddress ia ->
-                ia.getHostAddress()
-            }
-        }.flatten().findAll { String host ->
-            host ==~ ~/\d+.\d+.\d+.\d+/ && host != '127.0.0.1'
-        }
-
-        return flatten.isEmpty() ? 'xxx.xxx.xxx.xxx' : flatten.get(0)
     }
 }

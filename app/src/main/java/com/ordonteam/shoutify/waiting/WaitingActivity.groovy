@@ -1,29 +1,30 @@
 package com.ordonteam.shoutify.waiting
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.WindowManager
 import com.ordonteam.shoutify.game.GameActivity
-import com.ordonteam.shoutify.gameserver.ClientCallback
 import com.ordonteam.shoutify.gameserver.GameServerSocket
+import com.ordonteam.shoutify.gameserver.messages.ClientCallback
+import com.ordonteam.shoutify.gameserver.messages.EmptyClientCallback
 import groovy.transform.CompileStatic
+
+import static com.ordonteam.shoutify.gameserver.GameServerSocket.crateGameSocket
 
 @CompileStatic
 class WaitingActivity extends Activity implements ClientCallback {
 
+    @Delegate //Thanks to @Delegate we do not have to implement all methods from ClientCallback
+    ClientCallback delegate = new EmptyClientCallback()
     private GameServerSocket gameServerSocket
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState)
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        WaitingLayout look = new WaitingLayout(applicationContext)
-        look.setPadding(20)
-        look.setBackgroundColor(Color.argb(255,0,157,71))
-        setContentView(look)
+        setContentView(new WaitingLayout(applicationContext))
 
-        gameServerSocket = GameServerSocket.crateGameSocket('127.0.0.1', this)
+        gameServerSocket = crateGameSocket('127.0.0.1', this)
     }
 
     @Override
@@ -34,27 +35,7 @@ class WaitingActivity extends Activity implements ClientCallback {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        finish()
-    }
-
-    @Override
-    void onStarted(String otherPlayerName) {
-
-    }
-
-    @Override
-    void onUpdated(int myStatus,int opponentStatus) {
-
-    }
-
-    @Override
-    void onWin() {
-
-    }
-
-    @Override
-    void onLoose() {
-
+        onDisconnect()
     }
 
     @Override

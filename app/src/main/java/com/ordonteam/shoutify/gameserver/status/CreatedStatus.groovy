@@ -1,5 +1,4 @@
 package com.ordonteam.shoutify.gameserver.status
-
 import android.util.Log
 import com.ordonteam.shoutify.gameserver.ObjectSocket
 import com.ordonteam.shoutify.gameserver.messages.ConnectMessage
@@ -10,7 +9,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class CreatedStatus implements ServerStatus {
 
-    int i = 0
+    int connectedClients = 0
 
     CreatedStatus() {
         Log.d('CreatedStatus','Game Created')
@@ -20,16 +19,20 @@ class CreatedStatus implements ServerStatus {
     ServerStatus receiveMessage(Message message, boolean isFirst, ObjectSocket first, ObjectSocket second) {
         Log.d('CreatedStatus',"receiveMessage ${message.getClass()}")
         if(message instanceof ConnectMessage) {
-            i++
-            if (i == 2) {
-                first.sendMessage(new ConnectedMessage())
-                second.sendMessage(new ConnectedMessage())
-                return new ConnectedStatus()
-            } else {
-                return this
-            }
+            return connectClient(first, second)
         } else {
             throw new RuntimeException("Server received unexpected message ${message.getClass()}")
+        }
+    }
+
+    private ServerStatus connectClient(ObjectSocket first, ObjectSocket second) {
+        connectedClients++
+        if (connectedClients == 2) {
+            first.sendMessage(new ConnectedMessage())
+            second.sendMessage(new ConnectedMessage())
+            return new ConnectedStatus()
+        } else {
+            return this
         }
     }
 }

@@ -1,13 +1,11 @@
 package com.ordonteam.shoutify.game
 import android.app.Activity
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Vibrator
 import android.util.Log
 import android.view.WindowManager
 import android.widget.RelativeLayout
-import android.widget.TextView
-import com.ordonteam.shoutify.gameserver.ClientCallback
+import com.ordonteam.shoutify.gameserver.messages.ClientCallback
 import com.ordonteam.shoutify.gameserver.GameServer
 import com.ordonteam.shoutify.gameserver.GameServerSocket
 import com.ordonteam.shoutify.sensors.AccelerometerActivator
@@ -16,6 +14,8 @@ import com.ordonteam.shoutify.util.FileUtil
 import com.ordonteam.shoutify.util.MP3Util
 import com.ordonteam.shoutify.util.ThreadUtil
 import groovy.transform.CompileStatic
+
+import static com.ordonteam.shoutify.util.ViewUtil.getNewRelativeMatchParent
 
 @CompileStatic
 class GameActivity extends Activity implements ClientCallback{
@@ -33,25 +33,13 @@ class GameActivity extends Activity implements ClientCallback{
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         gameLayoutWrapper = new RelativeLayout(this)
-        RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)
-        gameLayoutWrapper.setLayoutParams(lp1)
+        gameLayoutWrapper.setLayoutParams(newRelativeMatchParent)
 
         gameLayout = new GameLayout(this)
-        gameLayout.setLayoutParams(lp1)
         gameLayoutWrapper.addView(gameLayout)
 
-        curtain = new RelativeLayout(this)
-        curtain.setLayoutParams(lp1)
-        curtain.setBackgroundColor(Color.argb(190,0,0,0))
+        curtain = new CurtainLayout(this)
         gameLayoutWrapper.addView(curtain)
-
-        TextView waitInfo = new TextView(this)
-        waitInfo.setText('Please wait for your opponent')
-        waitInfo.setTextColor(Color.WHITE)
-        RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT)
-        lp2.addRule(RelativeLayout.CENTER_IN_PARENT)
-        waitInfo.setLayoutParams(lp2)
-        curtain.addView(waitInfo)
 
         setContentView(gameLayoutWrapper)
         GameServerSocket.getGameServerSocket().setClientCallback(this)
@@ -79,9 +67,9 @@ class GameActivity extends Activity implements ClientCallback{
             GameServerSocket.getGameServerSocket().attack(gameLayout.userChargingProgressbar.progress)
             if(gameLayout.userChargingProgressbar.progress>30)
                 MP3Util.play3(this)
-            if(gameLayout.userChargingProgressbar.progress>60)
+            else if(gameLayout.userChargingProgressbar.progress>60)
                 MP3Util.play1(this)
-            if(gameLayout.userChargingProgressbar.progress>90)
+            else if(gameLayout.userChargingProgressbar.progress>90)
                 MP3Util.playSword(this)
             gameLayout.resetChargeProgress()
         })
